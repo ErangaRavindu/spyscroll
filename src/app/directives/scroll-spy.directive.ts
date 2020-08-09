@@ -20,10 +20,10 @@ export class ScrollSpyDirective implements AfterViewInit, OnDestroy {
       console.log('this.items');
       console.log(item);
       console.log('this.items');
-      // item.nativeElement.addEventListner('click', (e) => {
-      //   this.scrollSpySvc.setClickMenuItem(item.id);
-      //   e.preventDefault();
-      // });
+      item.nativeElement.addEventListner('click', (e) => {
+        this.scrollSpySvc.setClickMenuItem(item.id);
+        e.preventDefault();
+      });
     });
   }
 

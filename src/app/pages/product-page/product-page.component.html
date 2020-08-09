@@ -65,16 +65,18 @@
 <div class="container product-page">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-      <div appScrollSpy class="nav-bar sidenav">
-        <a matRipple appScrollSpyItem id="overview"   class="nav-bar__item overview">Overview</a>
-        <a matRipple appScrollSpyItem   id="facilities" class="nav-bar__item facilities">Facilities</a>
-        <a matRipple appScrollSpyItem  id="Menu" class="nav-bar__item Menu">Menu</a>
-        <a matRipple appScrollSpyItem  id="Map" class="nav-bar__item">Map</a>
-        <a matRipple appScrollSpyItem id="Media" class="nav-bar__item Media">Media</a>
-        <a matRipple appScrollSpyItem id="Reviews" class="nav-bar__item Reviews">Reviews</a>
+      <div a class="nav-bar sidenav">
+        <div *ngFor="let section of sections" class="">
+          <div class="nav-bar__item overview">{{ section.title}}</div>
+        </div>
+<!--        <a matRipple id="overview"    ><span>Overview</span></a>-->
+<!--        <a matRipple    id="facilities" class="nav-bar__item facilities"><span>Facilities</span></a>-->
+<!--        <a matRipple   id="Menu" class="nav-bar__item Menu"><span>Menu</span></a>-->
+<!--        <a matRipple   id="Map" class="nav-bar__item"><span>Map</span></a>-->
+<!--        <a matRipple  id="Media" class="nav-bar__item Media"><span>Media</span></a>-->
+<!--        <a matRipple  id="Reviews" class="nav-bar__item Reviews"><span>Reviews</span></a>-->
       </div>
-      <app-scroll-spy>
-        <div appScrollSpyContent  id="overview" class="section">
+        <div *appScrollSection="true; id:'overview'; title: 'overview'"  class="section">
           <div class="titleRow">
             <div class="title">
               Cafe Plus 94
@@ -115,7 +117,7 @@
             </div>
           </div>
         </div>
-        <div appScrollSpyContent id="facilities">
+        <div *appScrollSection="true; id:'facilities'; title: 'facilities'" >
           <div class="">
             <div class="c-title c-title--border">
               <div class="c-title--primary c-title--medium">Facilities</div>
@@ -146,7 +148,7 @@
             </div>
           </div>
         </div>
-        <div appScrollSpyContent id="Menu">
+        <div *appScrollSection="true; id:'Menu'; title: 'Menu'"  >
           <div class="margin--top-l menuWrapper">
 
             <div class="c-title c-title--border">
@@ -508,7 +510,7 @@
 
           </div>
         </div>
-        <div appScrollSpyContent id="Map">
+        <div *appScrollSection="true; id:'Map'; title: 'Map'" >
           <div class="margin--top-l">
             <div class="c-title c-title--border">
               <div class="c-title--primary c-title--medium">Map</div>
@@ -523,7 +525,7 @@
 
           </div>
         </div>
-        <div appScrollSpyContent  id="Media">
+        <div *appScrollSection="true; id:'Media'; title: 'Media'"  >
           <div class="margin--top-l">
             <div class="c-title c-title--border">
               <div class="c-title--primary c-title--medium">Media</div>
@@ -537,7 +539,7 @@
             </div>
           </div>
         </div>
-        <div appScrollSpyContent id="Reviews">
+        <div *appScrollSection="true; id:'Reviews'; title: 'Reviews'" >
           <div class="margin--top-l">
             <div class="c-title c-title--border">
               <div class="c-title--primary c-title--medium">What People say</div>
@@ -587,7 +589,6 @@
             </div>
           </div>
         </div>
-      </app-scroll-spy>
 
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">

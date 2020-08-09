@@ -64,6 +64,9 @@ import { ScrollSpyItemDirective } from './directives/scroll-spy-item.directive';
 import { ScrollSpyDirective } from './directives/scroll-spy.directive';
 import { ScrollSpyContentDirective } from './directives/scroll-spy-content.directive';
 import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component';
+import {ScrollSpyService} from './services/scroll-spy.service';
+import {AutoScrollService} from './services/auto-scroll.service';
+import {ScrollContainerDirective, ScrollSectionDirective} from './directives/auto-scroll';
 
 @NgModule({
   declarations: [
@@ -98,6 +101,8 @@ import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component
     ScrollSpyDirective,
     ScrollSpyContentDirective,
     ScrollSpyComponent,
+    ScrollContainerDirective,
+    ScrollSectionDirective,
   ],
   imports: [
     BrowserModule,
@@ -144,6 +149,9 @@ import { ScrollSpyComponent } from './components/scroll-spy/scroll-spy.component
     Ng5SliderModule,
     NgxSkeletonLoaderModule,
     MatSidenavModule
+  ],
+  providers: [
+    AutoScrollService
   ],
   bootstrap: [AppComponent]
 })

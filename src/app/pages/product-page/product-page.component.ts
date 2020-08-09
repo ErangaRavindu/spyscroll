@@ -18,6 +18,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {MatStepper} from '@angular/material/stepper';
+import {Section} from '../../services/section';
+import {Subscription} from 'rxjs';
+import {AutoScrollService} from '../../services/auto-scroll.service';
 
 
 @Component({
@@ -146,8 +149,14 @@ export class ProductPageComponent implements OnInit {
       }
     }
   };
+  sections: Array<Section>;
+  selectedSection: Section;
 
-  constructor(private scrollService: ScrollService, public dialog: MatDialog, private BottomSheetRef: MatBottomSheet) {
+  private subscription: Subscription = new Subscription();
+  private noOfSections = 0;
+
+
+  constructor(private scrollService: ScrollService, public dialog: MatDialog, private BottomSheetRef: MatBottomSheet, private autoScrollService: AutoScrollService ) {
   }
 
 
@@ -184,6 +193,17 @@ export class ProductPageComponent implements OnInit {
         imgUrl: 'https://q-cf.bstatic.com/images/hotel/max1024x768/134/134394306.jpg',
       },
     ];
+    this.subscription.add(this.autoScrollService.sections.subscribe(sections => {
+      if (sections) {
+        this.sections = sections;
+        this.noOfSections = sections.length;
+      }
+    }));
+    this.subscription.add(this.autoScrollService.currentSection.subscribe(section => {
+      if (section) {
+        this.selectedSection = section;
+      }
+    }));
   }
 
   openMenu(): void {
@@ -259,27 +279,28 @@ export class ReserveModal implements OnInit {
     });
   }
 
-  goBack(stepper: MatStepper){
+  goBack(stepper: MatStepper) {
     stepper.previous();
   }
 
-  goForward(stepper: MatStepper){
+  goForward(stepper: MatStepper) {
     stepper.next();
   }
+
   userJourneyMange(user) {
     console.log(user);
-    if (  user === 'signUp') {
+    if (user === 'signUp') {
       this.signUp = true;
       this.signIn = false;
       this.guest = false;
 
     }
-    if (  user === 'signIn') {
+    if (user === 'signIn') {
       this.signUp = false;
       this.signIn = true;
       this.guest = false;
     }
-    if (  user === 'guest') {
+    if (user === 'guest') {
       this.signUp = false;
       this.signIn = false;
       this.guest = true;
@@ -320,6 +341,7 @@ export class BottomSheetReserveSheet {
       // this.animal = result;
     });
   }
+
   closeSheet(): void {
     this.BottomSheetRef.dismiss();
   }
