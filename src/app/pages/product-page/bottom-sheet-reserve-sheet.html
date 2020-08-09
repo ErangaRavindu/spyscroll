@@ -1,0 +1,94 @@
+
+<div class="filtersSheet__header">
+  <button mat-icon-button  (click)="closeSheet()">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <div class="c-title c-title--primary c-title--center" >Reserve your space</div>
+  <button mat-stroked-button >Clear</button>
+</div>
+<div class="formFieldContainer formFieldContainer--small search_widget">
+<div class="search_widget_container">
+
+
+  <mat-card-content class="formContainer" id="formContainer">
+    <div class="c-label">Date & Time</div>
+    <div class="input-group search-widget-input mb-3">
+      <div class="input-group-prepend">
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+      </div>
+      <input (click)="myDatepicker.open()" class="form-control" [matDatepicker]="myDatepicker">
+      <mat-datepicker #myDatepicker></mat-datepicker>
+    </div>
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="c-label">Party Size</div>
+        <div class="input-group search-widget-input mb-3" [matMenuTriggerFor]="menu">
+          <div class="input-group-prepend">
+            <button mat-icon-button >
+              <mat-icon>people</mat-icon>
+            </button>
+          </div>
+          <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+          <input type="text" class="form-control" placeholder="2 People" aria-label="destination"
+                 aria-describedby="basic-addon1">
+
+        </div>
+        <mat-menu #menu="matMenu" class="mat-menu-panel-custom">
+          <app-input-spinner (click)="$event.stopPropagation()"></app-input-spinner>
+        </mat-menu>
+
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="c-label">Party Size</div>
+        <div class="input-group search-widget-input mb-3" [matMenuTriggerFor]="menu2">
+          <div class="input-group-prepend">
+            <button mat-icon-button >
+              <mat-icon>people</mat-icon>
+            </button>
+          </div>
+          <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+          <input type="text" class="form-control" placeholder="2 People" aria-label="destination"
+                 aria-describedby="basic-addon1">
+
+        </div>
+        <mat-menu #menu2="matMenu" class="mat-menu-panel-custom">
+          <div class="filter-bar">
+            <mat-chip-list class="filter-chip-list">
+              <button class="filter-chip filter-chip--square" mat-button>Room</button>
+              <button class="filter-chip filter-chip--square" mat-button>Booth</button>
+              <button class="filter-chip filter-chip--square" mat-button>Hall</button>
+            </mat-chip-list>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="c-label">Start From</div>
+    <div class="input-group search-widget-input mb-3 " [matMenuTriggerFor]="autoSugggest">
+      <div class="input-group-prepend">
+        <mat-icon>trip_origin</mat-icon>
+      </div>
+      <input  type="text" class="form-control" placeholder="What are you looking for ?" aria-label="destination" aria-describedby="basic-addon1">
+
+    </div>
+    <mat-menu #autoSugggest="matMenu" class="autoList customScroll">
+      <button mat-menu-item>Itemdvalvnal a ija ejeav anvanelakemf alenalkefmlkaemf alefnalemfl 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+    <div class="c-label">Party Size</div>
+    <div class="timeSlots">
+      <mat-chip-list class="timeSlotsList">
+        <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+        <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+        <mat-chip class="timeSlotchip ">07.50 PM</mat-chip>
+        <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+        <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+        <mat-chip class="timeSlotchip timeSlotchip--more"> More...</mat-chip>
+      </mat-chip-list>
+    </div>
+  </mat-card-content>
+
+  <button class="erg-btn erg-btn--full-width" mat-flat-button color="warn"  (click)="reserve()">Make A
+    Reservation
+  </button>
+</div>
+</div>

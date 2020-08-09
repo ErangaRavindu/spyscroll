@@ -1,0 +1,355 @@
+<div mat-dialog-title>
+  <div class="filtersSheet__header">
+
+    <div class="">Reserve</div>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+
+
+
+</div>
+<div mat-dialog-content>
+<ng-template [ngIf]="smallScreen" [ngIfElse]="bigScreen">
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Step Title</ng-template>
+      <div class="blockContainer">
+        <div class="blockContentItem blockContentItem--mobile">
+          <img class="blockContentItem__image" src="../../../assets/img/svg/signin-01.svg">
+          <div class="">
+            <div class="blockContentItem__text">Some description here worth while</div>
+            <button mat-stroked-button color="primary" matStepperNext (click)="userJourneyMange('signIn')">Sign In</button>
+          </div>
+
+        </div>
+        <div class="blockContentItem blockContentItem--mobile">
+          <img class="blockContentItem__image" src="../../../assets/img/svg/signup-01.svg">
+          <div class="">
+            <div class="blockContentItem__text">Some description here worth while</div>
+            <button mat-stroked-button color="primary" matStepperNext (click)="userJourneyMange('signUp')">Sign Up</button>
+          </div>
+
+        </div>
+        <div class="blockContentItem blockContentItem--mobile">
+          <img class="blockContentItem__image" src="../../../assets/img/svg/guest-01.svg">
+          <div class="">
+            <div class="blockContentItem__text">Some description here worth while</div>
+            <button mat-stroked-button color="primary" matStepperNext (click)="userJourneyMange('guest')">Continue As A Guest</button>
+          </div>
+
+        </div>
+
+      </div>
+      <hr>
+      <div class="blockContentItem__text">Continue With</div>
+      <div class="erg-btn--list btn-group-user">
+
+        <button mat-button>
+          <mat-icon class="hg-icon">_google</mat-icon> Google
+        </button>
+        <button mat-button>
+          <mat-icon class="hg-icon">_facebook</mat-icon> Facebook
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Step Title</ng-template>
+      <form [formGroup]="secondFormGroup" *ngIf="signUp">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="c-title c-title--border">
+            <div class="c-title--primary c-title--medium">Sign Up</div>
+          </div>
+          <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mat-dialog-actions__spaced">
+        <button mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-flat-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+      <form [formGroup]="secondFormGroup" *ngIf="signIn">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Sign In</div>
+            </div>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="mat-dialog-actions__spaced">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+      <form [formGroup]="secondFormGroup" *ngIf="guest">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Guest</div>
+            </div>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Mobile Number</mat-label>
+              <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="mat-dialog-actions__spaced">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Step Title</ng-template>
+      <h4>You are now done.</h4>
+      <app-items-summary></app-items-summary>
+      <div class="labeledFormGroup">
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Name</div>
+          <div class="labledForemItems__Value">Thomas Shelby</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Email</div>
+          <div class="labledForemItems__Value">thomas@shelby.com</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Phone Number</div>
+          <div class="labledForemItems__Value">+0012345678</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Address</div>
+          <div class="labledForemItems__Value">Small Heath, Birmingham, England</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 ">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Special Requests</mat-label>
+            <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+          </mat-form-field>
+          <section class="example-section">
+            <mat-checkbox color="warn" class="example-margin" >Checked</mat-checkbox>
+            <mat-checkbox style="margin-left: 16px" color="warn" class="example-margin" >Indeterminate</mat-checkbox>
+          </section>
+        </div>
+      </div>
+
+      <div class="erg-btn--list--between mt-5">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button mat-flat-button color="primary" routerLink="/checkout"  mat-dialog-close>Make Reservations</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</ng-template>
+
+<ng-template #bigScreen>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Step Title</ng-template>
+      <div class="c-title c-title--border">
+        <div class="c-title--primary c-title--medium">Step Title</div>
+      </div>
+     <div class="blockContainer">
+       <div class="blockContentItem">
+         <img class="blockContentItem__image" src="../../../assets/img/svg/signin-01.svg">
+         <div class="blockContentItem__text">Some description here worth while</div>
+         <button mat-stroked-button color="primary" matStepperNext  (click)="userJourneyMange('signIn')">Sign In</button>
+       </div>
+       <div class="blockContentItem">
+         <img class="blockContentItem__image" src="../../../assets/img/svg/signup-01.svg">
+         <div class="blockContentItem__text">Some description here worth while</div>
+         <button mat-stroked-button color="primary" matStepperNext  (click)="userJourneyMange('signUp')">Sign Up</button>
+       </div>
+       <div class="blockContentItem">
+         <img class="blockContentItem__image" src="../../../assets/img/svg/guest-01.svg">
+         <div class="blockContentItem__text">Some description here worth while</div>
+         <button mat-stroked-button color="primary"  matStepperNext (click)="userJourneyMange('guest')">Continue As A Guest</button>
+       </div>
+
+     </div>
+      <hr>
+      <div class="erg-btn--list erg-btn--list--center">
+        <button mat-button>
+          <mat-icon class="hg-icon">_google</mat-icon> Login With Google
+        </button>
+        <button mat-button>
+          <mat-icon class="hg-icon">_facebook</mat-icon> Login With Facebook
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Step Title</ng-template>
+      <form [formGroup]="secondFormGroup" *ngIf="signUp" >
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Sign Up</div>
+            </div>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <img class="blockContentItem__image" src="../../../assets/img/svg/signup-01.svg">
+          </div>
+        </div>
+
+        <div class="mat-dialog-actions__spaced">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+      <form [formGroup]="secondFormGroup" *ngIf="signIn" >
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Sign In</div>
+            </div>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <img class="blockContentItem__image" src="../../../assets/img/svg/signup-01.svg">
+          </div>
+        </div>
+
+        <div class="mat-dialog-actions__spaced">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+      <form [formGroup]="secondFormGroup" *ngIf="guest" >
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Guest User</div>
+            </div>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-type-1 margin--bottom-m" color="accent">
+              <mat-label>Mobile Number</mat-label>
+              <input type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <img class="blockContentItem__image" src="../../../assets/img/svg/signup-01.svg">
+          </div>
+        </div>
+
+        <div class="mat-dialog-actions__spaced">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-flat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+      <h4>You are now done.</h4>
+      <app-items-summary></app-items-summary>
+      <div class="labeledFormGroup">
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Name</div>
+          <div class="labledForemItems__Value">Thomas Shelby</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Email</div>
+          <div class="labledForemItems__Value">thomas@shelby.com</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Phone Number</div>
+          <div class="labledForemItems__Value">+0012345678</div>
+        </div>
+        <div class="labledForemItems">
+          <div class="labledForemItems__label">Address</div>
+          <div class="labledForemItems__Value">Small Heath, Birmingham, England</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 ">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Special Requests</mat-label>
+            <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+          </mat-form-field>
+          <section class="example-section">
+            <mat-checkbox color="warn" class="example-margin" >Checked</mat-checkbox>
+            <mat-checkbox style="margin-left: 16px" color="warn" class="example-margin" >Indeterminate</mat-checkbox>
+          </section>
+        </div>
+      </div>
+      <div class="erg-btn--list--between">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button mat-flat-button color="primary" routerLink="/checkout"  mat-dialog-close>Make Reservations</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</ng-template>
+</div>

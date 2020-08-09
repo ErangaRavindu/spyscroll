@@ -1,0 +1,40 @@
+<div matRipple class="item-wrapper" routerLink="{{ model.url }}">
+  <div class="Ab08je">
+    <div class="imageWrapper">
+      <div class="imageWrapperInner">
+        <div class="SJyhnc">
+          <div class="zfeKmf">
+            <img class="itemImage" src="{{model.imgUrl}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contentWrapper">
+      <div class="itemDetails">
+        <div class="row1">
+          <div class="labelsWrapper">
+            <app-rating-stars></app-rating-stars>
+            <div class="name">{{ model.name }}</div>
+            <div class="locations">{{ model.location }}</div>
+          </div>
+          <div class="priceWrapper">
+            <div class="currencyWrapper">
+              <div class="currency">{{ model.currency }}</div>
+              <div class="value">{{ model.Price }}</div>
+            </div>
+            <div class="ratio">2 Persons Approx</div>
+          </div>
+        </div>
+        <div class="row2 line-clamp line-clamp-3">{{ model.description }}</div>
+        <div class="row3">
+          <div class="timeSlots">
+            <mat-chip-list class="timeSlotsList">
+              <mat-chip class="timeSlotchip" *ngFor="let TimeSlot of model.TimeSlots">{{ TimeSlot }}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+      <div class="itemPriceDetails"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2818 @@
+@import "a-settings";
+
+$breakpoints-typography: (
+  'x-small':  300px,
+  'small'  :  768px,
+  'medium' :  992px,
+  'large'  :  1200px,
+  'x-large':  1440px,
+  'xx-large':  1600px
+);
+@mixin respond-to($breakpoint) {
+  //@content;
+  @if map-has-key($breakpoints-typography, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints-typography, $breakpoint)}) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}
+
+@mixin body-component-theme($theme) {
+
+  $background: map-get($theme, background);
+
+  body {
+
+    font-family: Poppins, sans-serif !important;
+    background-color: mat-color($background, background) !important;
+  }
+}
+@mixin erg-header($theme) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  // all of these variables contain many additional variables
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  header {
+    height: $header-height;
+    background-color: transparent;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    transition: all 0.5s ease;
+  }
+  .home-header {
+    @include for-tablet-portrait-up () {
+      height: $header-height* 2;
+      display: flex;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+    .c-header__logo {
+      @include for-tablet-portrait-up () {
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+      }
+      .logo {
+        @include for-tablet-portrait-up () {
+          height : $logo-height *2;
+          width: auto;
+          svg, path {
+            color: map-get($foreground, base);
+            fill: map-get($foreground, base);
+          }
+        }
+
+      }
+    }
+  }
+  .main-body-container {
+    margin-top: $header-height;;
+  }
+  .header-content {
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:  map-get($foreground,text);
+    font-size: 16px;
+  }
+  .c-header__logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    .logo {
+      height : $logo-height;
+      transition: all 0.5s ease;
+      width: auto;
+      svg, path {
+        color: map-get($foreground, base);
+        fill: map-get($foreground, base);
+      }
+    }
+  }
+  .c-header__links {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .sticky {
+    background-color:map-get($background, app-bar);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: $shadow-primary;
+  }
+
+}
+@mixin erg-footer($theme) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  // all of these variables contain many additional variables
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  footer {
+    width: 100%;
+    background-color: map-get($primary, default);
+    color: map-get($foreground, secondary-text);
+    border-top:1px solid map-get($foreground, divider);
+    margin-top: 32px;
+    overflow: hidden;
+    padding-top: 1px;
+    position: relative;
+    font-family: Poppins, sans-serif !important;
+    .footer-row {
+      border-top: map-get($foreground, divider);
+      background-color: map-get($primary, default);
+      align-items: center;
+      padding: 16px 0;
+      text-align: center;
+      transform: translate3d(0,0,0);
+      color: map-get($primary, default-contrast);
+    }
+    .footer-info {
+      align-items: baseline;
+      justify-content: space-between;
+      line-height: normal;
+      font-size: 16px;
+      font-weight: 300;
+    }
+    .footer-links {
+      line-height: 18px;
+      padding-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include for-phone-only() {
+        flex-direction: column;
+      }
+      @include for-tablet-portrait-up() {
+        flex-direction: row;
+      }
+      .footer-link {
+        border-radius: 8px;
+        color:map-get($primary, default-contrast);
+        font-weight: 500;
+        margin: 12px 16px;
+        padding: 4px 2px;
+        white-space: nowrap;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+    }
+  }
+
+
+}
+@mixin erg-master-header($theme) {
+
+  .masthead {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    //background-image: url('https://thimpress.com/wp-content/uploads/2018/04/41993-das-loft-sofitel-19to1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    &__content {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+    }
+  }
+
+
+}
+@mixin erg-btn($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $btn-primary-color: map-get($primary, default);
+  $btn-disabled-color: map-get($foreground, disabled);
+  .erg-btn--list {
+    button:not(:last-child) {
+      margin-right: $default-space;
+    }
+    &--between {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--center {
+      display: flex;
+      justify-content: center;
+      @include for-phone-only() {
+        flex-direction: column;
+      }
+      @include for-tablet-portrait-up() {
+        flex-direction: row;
+      }
+    }
+  }
+  .erg-btn {
+    font-family: Poppins, sans-serif !important;
+    &--full-width {
+      margin: 12px 0;
+      width: 100%;
+    }
+    &-opBtn {
+      border-radius: 40px;
+      background-color: transparent;
+      border: 1px solid map-get($foreground, divider);
+      color: $btn-primary-color;
+      &--disabeled {
+        background-color: transparent;
+        color:  $btn-disabled-color;
+        border: 1px solid $btn-disabled-color;
+      }
+    }
+    &--large {
+      height: 56px;
+      font-size: 16px;
+    }
+    &--small {
+      height: 36px;
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  }
+  .extended-fab {
+    width: 120px;
+    height: 56px;
+    border-radius: 30px;
+    transition: all .5s ease-in-out;
+    &__label {
+      padding: 0 8px;
+      transition: all .5s ease-in-out;
+    }
+    &--label-hide {
+      width: 56px;
+      height: 56px;
+      border-radius: 30px;
+      .extended-fab__label {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        padding: 0 0;
+        line-height: 0;
+        font-size: 0;
+      }
+    }
+  }
+}
+@mixin c-title($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .c-title {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 16px 12px 0;
+    font-family: Poppins, sans-serif !important;
+    &--border {
+      border-bottom: 1px solid map-get($foreground, divider);
+    }
+    &--primary {
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: map-get($foreground, text);
+    }
+    &--center {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    &--secondary {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+      color: map-get($foreground, secondary-text);
+    }
+    &--medium {
+      font-size: 24px;
+    }
+    &--small {
+      font-size: 16px;
+    }
+  }
+  .c-label {
+    font-size: 12px;
+    color: map-get($foreground, secondary-text);
+    margin: 12px 0;
+  }
+}
+@mixin erg-card-component-theme($theme) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  // all of these variables contain many additional variables
+
+  .c-card {
+    box-shadow: $shadow-primary;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    background-color: mat-color($background, card);
+    color: map-get($foreground, text);
+  }
+}
+@mixin erg-search__form-card($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+    .c-search-form{
+      margin-bottom: 12px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 16px;
+      padding-top: 16px;
+
+      .time-picker {
+        border: 1px solid map-get($foreground, divider);
+        padding-left: 16px !important;
+
+        &[type="time"]{
+          flex-direction: row !important;
+          i {
+            position: absolute;
+            left: 0;
+            font-size: 16px;
+            height: 16px;
+          }
+        }
+        &::after {
+          background: black;
+        }
+      }
+      .time-picker[type="time" i] {
+        //transform-style: preserve-3d;
+        //transform: rotateY(180deg);
+      }
+      &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-gap: 8px;
+        @include for-phone-only(){
+          grid-template-columns: 1fr;
+        }
+        @include for-tablet-portrait-up(){
+          grid-template-columns: 1fr 1fr;
+        }
+        @include for-tablet-landscape-up(){
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        @include for-desktop-up() {
+          grid-template-columns: 2fr 2fr 2fr 1fr;
+        }
+
+        //display: flex;
+        //flex: 1;
+        //align-items: center;
+        &__item {
+          //@include for-phone-only() {
+          //  padding: 0;
+          //}
+          //@include for-tablet-portrait-up() {
+          //  padding-left: 0;
+          //  padding-right: 0;
+          //  &:first-child {
+          //    padding-left: 15px;
+          //  }
+          //}
+          //@include for-tablet-landscape-up() {
+          //  padding-left: 0;
+          //  padding-right: 15px;
+          //  &:first-child {
+          //    padding-left: 15px;
+          //  }
+          //}
+
+        }
+      }
+      input[type="time"]::-webkit-calendar-picker-indicator {
+        position: absolute;width: 100%;
+        font-size: 16px;
+        height: 24px;
+        cursor: pointer;
+        //background: map-get($background, background);
+      }
+      input[type="time"]::-webkit-calendar-picker-indicator::after {
+        margin-right: 8px;
+        cursor: pointer;
+      }
+
+      input[type="time"] {
+        //padding-left: 16px;
+        cursor: pointer;
+        padding-left: 8px;
+      }
+      input[type="time"]:before {
+        color: lightgrey;
+        content: attr(placeholder) !important;
+        margin-right: 24px;
+        cursor: pointer;
+      }
+    }
+  .ngb-tp-chevron::before {
+    color: map-get($foreground, text);
+  }
+  .btn-outline-primary {
+    color: map-get($primary, default);
+    background-image: none;
+    background-color: transparent;
+    border-color: map-get($primary, default);
+  }
+}
+@mixin erg-form-list ($theme){
+  .form-list {
+    .mat-form-field {
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+
+  }
+}
+@mixin input-type-1($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .input-type-1 {
+    font: $font-size-s;
+    .mat-form-field-wrapper{
+      padding: 0 !important;
+    }
+    .mat-input-element {
+
+    }
+    .mat-form-field-infix {
+      border-top: 6px solid transparent;
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+    }
+    .mat-select-arrow-wrapper {
+      transform: none !important;
+    }
+    .mat-form-field-outline {
+      color:  map-get($background,disabled-button-toggle) !important;
+      background: map-get($background,disabled-button-toggle) !important;
+    }
+    .mat-form-field-label {
+      top: 2.14275em;
+      margin-top: -0.25em;
+    }
+  }
+  .hasbutton {
+    .mat-form-field-flex {
+      padding: 0 0 0 .75em;
+    }
+    .mat-form-field-suffix {
+      top: 0 !important;
+    }
+    button {
+      height: 45px;
+    }
+  }
+  .input-type-1--warn {
+    .mat-form-field-outline {
+      color:  map-get($warn, default) !important;
+      //background: map-get($warn, default);
+    }
+  }
+}
+@mixin input-type-2($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .input-type-2 {
+
+    .mat-form-field-wrapper{
+      padding: 0 !important;
+    }
+    .mat-form-field-flex {
+      padding: 0 !important;
+    }
+    .mat-form-field-outline {
+      color:  map-get($background, background)!important;
+      background: map-get($background, background);
+    }
+  }
+}
+@mixin input-select-chip ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  //mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item
+  .input-select-chip {
+    font: $font-size-text;
+    height: 36px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    width: fit-content !important;
+    overflow: hidden;
+    font-weight: 400;
+    &.mat-chip.mat-standard-chip {
+      background-color: inherit;
+      color: map-get($foreground, text);
+      border: 1px solid map-get($foreground, text);
+
+    }
+    //.mat-select {
+    //  width: fit-content !important;
+    //}
+    .mat-form-field-wrapper{
+      padding: 0 !important;
+    }
+    .mat-input-element {
+
+    }
+    .mat-form-field-infix {
+      border-top: 0 solid transparent;
+      display: flex;
+      align-items: center;
+      padding: 0 0;
+    }
+    .mat-select-arrow-wrapper {
+      transform: none !important;
+    }
+    .mat-form-field-outline {
+      display: none;
+      color:  transparent !important;
+      background: transparent;
+    }
+    .mat-form-field-label {
+      top: 2.14275em;
+      margin-top: -0.25em;
+    }
+  }
+}
+@mixin erg-divider-vert ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .divider-vert {
+    border-left: 1px solid map-get($foreground, divider);
+    padding-right: 16px;
+  }
+}
+@mixin hero-header($theme) {
+
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .hero-header {
+    //display: flex;
+    //justify-content: center;
+    //margin-bottom: 100px;
+    //width: 100%;
+    //height: 500px;
+    //overflow: hidden;
+    //position: absolute;
+    //top: 0;
+    //.hero-image {
+    //  width: 100%;
+    //  height: auto;
+    //}
+    position: absolute;
+    top: -16%;
+    background-image:
+      linear-gradient(to bottom, rgba(245, 246, 252, 0) 20%, rgba(map_get($background, background), 99%)),
+      url('https://thumbs.dreamstime.com/z/morning-city-park-happy-family-having-fun-girl-walking-dog-young-boy-talking-phone-man-reading-news-paper-women-164493088.jpg');
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+  }
+
+  .header-image-text-container {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .header-image-text {
+    text-align: center;
+    font-size: 64px;
+    font-weight: 500;
+    color: map-get($foreground, text);
+    margin-bottom: 24px;
+    @include for-phone-only() {
+      font-size: 36px;
+    }
+  }
+  .home-space {
+
+    @include for-phone-only() {
+      margin-top: 100px;
+    }
+    @include for-tablet-portrait-up() {
+      margin-top: 257px;
+    }
+  }
+}
+@mixin searchBtn ($theme){
+   .searchBtn-container {
+     position: absolute;
+     bottom: -24px;
+     display: flex;
+     width: 100%;
+     justify-content: center;
+     @include for-phone-only {
+       position: relative;
+       bottom: 0;
+       margin: 12px 0;
+     }
+   }
+}
+@mixin widget-spinner($theme) {
+
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .mat-menu-panel-custom {
+    max-width: none;
+    width: 320px;
+    padding: 16px;
+  }
+  .widget-spinner {
+    display: flex;
+    padding-bottom: 8px;
+    white-space: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .labelWrapper {
+      .label {
+        align-self: center;
+        font-size: 16px;
+        flex-grow: 1;
+        margin: 0 8px;
+        min-width: 76px;
+        &--primary {
+          color: map-get($foreground, text);
+        }
+        &--secondary {
+          color: map-get($foreground, hint-text);
+        }
+      }
+    }
+    .spinnerWrapper {
+      color: map-get($foreground, text);
+      display: flex;
+      align-items: center;
+      .erg-btn {
+      }
+      .widgets-numberpicker__flipper {
+        border: 8px solid transparent;
+        display: inline-block;
+        height: 52px;
+        position: relative;
+        -webkit-transition: opacity 200ms ease 0ms;
+      }
+      .numberpicker__flipper-value {
+        display: inline-block;
+        line-height: 32px !important;
+        text-align: center;
+        min-width: 20px;
+        vertical-align: middle;
+        height: 32px;
+
+      }
+    }
+  }
+}
+@mixin itemRow($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .item-row {
+    //margin-top: 36px ;
+    //margin-bottom: 36px ;
+    .itemRow__title {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 8px 16px 12px;
+      .title--primary {
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: map-get($foreground, text);
+      }
+      .title--secondary {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 12px;
+        color: map-get($foreground, secondary-text);
+      }
+    }
+  }
+}
+@mixin product-tile($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .product-tile {
+    border: 1px solid #ff6d00;
+    box-shadow: none;
+    flex: 0 0 auto;
+    margin: 4px 4px 30px 4px;
+    border-radius: 4px;
+    background-color: map-get($background, card);
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    &:hover {
+      background-color: map-get($background, hover);
+      box-shadow: $shadow-primary2;
+      transform: scale(1.02);
+    }
+    .product-tile-content {
+      background: transparent;
+      display: flex;
+      overflow: hidden;
+      &--vert {
+        flex-direction: column;
+        .img-holder {
+          height: 165px;
+          width: 100%;
+          padding: 16px 16px 0 0;
+          @include for-phone-only() {
+            height: 280px;
+          }
+          .image {
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+          }
+        }
+      }
+      &--horiz {
+        flex-direction: row;
+        .img-holder {
+          height: auto;
+          width: 50%;
+          min-width: 50%;
+          margin: 16px 0 0 16px;
+          .image {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+          }
+        }
+
+      }
+      .img-holder {
+        display: flex;
+        position: relative;
+
+        .image {
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: calc(100% + 1px);
+          margin: -1px -1px 0;
+          width: calc(100% + 2px);
+          object-fit: cover;
+        }
+
+      }
+      .detail-holder {
+        color: map-get($foreground, text);
+        overflow: hidden;
+        padding: 8px 8px;
+        .price-holder {
+          border-radius: 4px;
+          bottom: 10px;
+          color: map-get($foreground, text);
+          font: 500 20px/24px 'Google Sans',Roboto,Arial,sans-serif;
+          letter-spacing: 1px;
+          padding: 6px 10px 6px 0;
+          right: 8px;
+          white-space: nowrap;
+          display: flex;
+          flex-direction: column;
+          .subTitle {
+            font-size: .75rem;
+            font-weight: 400;
+            line-height: 1rem;
+            color: map-get($foreground, secondary-text);
+          }
+        }
+        .itemLogo {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          display: -webkit-box;
+          max-height: 20px;
+          height: 20px;
+          width: auto;
+          margin: 12px 0;
+        }
+        .itemTitle {
+          height: 56px;
+          //padding: 8px 0;
+          font-weight: 600;
+          font-size: 18px;
+        }
+        .feedbacks {
+          letter-spacing: .025em;
+          font-size: .75rem;
+          font-weight: 400;
+          line-height: 1rem;
+          color: map-get($foreground, secondary-text);
+          margin: 4px 0;
+        }
+        .subTitle {
+          letter-spacing: .025em;
+          font-size: .75rem;
+          font-weight: 400;
+          line-height: 1rem;
+          color: map-get($foreground, secondary-text);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          display: -webkit-box;
+          max-height: 16px;
+        }
+      }
+    }
+    &:first-child {
+
+    }
+  }
+
+}
+@mixin search-result-item($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .item-wrapper {
+    cursor: pointer;
+    flex: 0 1 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    .imageWrapper {
+      overflow: visible;
+      white-space: normal;
+      .imageWrapperInner {
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        .SJyhnc {
+          overflow: hidden;
+          width: 100%;
+          max-width: 296px;
+          .zfeKmf {
+            display: inline-block;
+            flex: 1 1 auto;
+            height: inherit;
+            margin-right: 4px;
+            vertical-align: top;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            overflow: hidden;
+          }
+          .itemImage {
+            background: #dadce0;
+            height: 200px;
+            max-width: none;
+            transform: translate3d(0,0,0);
+            width: 100%;
+          }
+        }
+      }
+    }
+    .contentWrapper {
+      padding: 16px;
+      display: flex;
+      width: 100%;
+      .itemDetails {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        .row1 {
+          display: flex;
+          .labelsWrapper {
+            flex: 1;
+            flex-basis: 0.000000001px;
+            margin-inline-end: 16px;
+            .ratings {
+              font: 400 16px/24px;
+              color: map-get($foreground, secondary-text);
+            }
+            .name {
+              font: 400 24px/24px 'Google Sans',Roboto,Arial,sans-serif;
+              letter-spacing: normal;
+              color: map-get($foreground, text);
+            }
+            .locations {
+              font: 400 1px/24px;
+              font-size: 16px;
+              color: map-get($foreground, secondary-text);
+            }
+          }
+          .priceWrapper {
+            .currencyWrapper {
+              display: flex;
+              justify-content: flex-end;
+              align-items: flex-end;
+              .currency {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                margin-right: 8px;
+                color: map-get($foreground, secondary-text);
+              }
+              .value {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 24px;
+                color: map-get($foreground, text);
+               }
+            }
+            .ratio  {
+              text-align: right;
+              font-weight: 400;
+              font-size: 14px;
+              color: map-get($foreground, secondary-text);
+            }
+          }
+        }
+        .row2 {
+          font-size:16px;
+          font-weight: 400;
+          line-height: 24px;
+          color: map-get($foreground, secondary-text);
+        }
+        .row3 {
+
+        }
+      }
+    }
+  }
+
+  .Ab08je {
+    border: 1px solid #ff6d00;;
+    border-radius: 8px;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: flex;
+    margin: 8px;
+    transition: all .3s ease-in-out;
+    &:hover {
+      background-color: map-get($background, hover);
+      box-shadow: $shadow-primary2;
+      transform: scale(1.01);
+    }
+    @include for-phone-only() {
+      flex-direction: column;
+    }
+  }
+
+}
+@mixin product-tile-type2($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .product-tile-type2 {
+    margin-right: 8px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    &__item {
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      .imagHolder {
+        position: relative;
+        .imageClass {
+          height: 160px;
+          width: 100%;
+        }
+        .title-container {
+          align-items: flex-end;
+          background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.85));
+          bottom: 0;
+          box-sizing: border-box;
+          display: flex;
+          height: 72px;
+          padding: 0 16px;
+          position: absolute;
+          width: 100%;
+        }
+        .title--primary {
+          color: #fff;
+          font: 20px/22px Google Sans,Roboto,Arial,sans-serif;
+          letter-spacing: .33px;
+          margin-bottom: 12px;
+          overflow: hidden;
+          white-space: normal;
+          display: flex;
+          flex-direction: column;
+          -webkit-line-clamp: 2;
+          max-height: 44px;
+          text-rendering: geometricPrecision;
+          word-wrap: break-word;
+        }
+      }
+      .contentHolder {
+        border-left: 1px solid map-get($foreground, divider);
+        border-right: 1px solid map-get($foreground, divider);
+        border-bottom: 1px solid map-get($foreground, divider);
+        border-radius: 0 0 8px 8px;
+        display: flex;
+        flex-direction: column;
+        flex: auto;
+        overflow: auto;
+        text-overflow: ellipsis;
+        white-space: normal;
+        justify-content: flex-end;
+        padding: 16px;
+        color: map-get($foreground, text);
+        .content {
+          margin: 4px 0;
+          font-size: 12px;
+        }
+      }
+    }
+    &:first-child {
+
+    }
+  }
+
+}
+@mixin icon-block ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .iconBlockRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    .iconBlock {
+      line-height: initial;
+      padding: 8px;
+      //
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 4px;
+      @include for-tablet-portrait-up() {
+        margin: 0 16px;
+      }
+      &:hover {
+        color: map-get($accent, default);
+        background-color: map-get($background, hover);
+        .iconBlock__icon {
+          color: map-get($accent, default);
+        }
+        .iconBlock__label {
+          color: map-get($accent, default);
+        }
+      }
+      &__icon {
+        margin-bottom: 4px;
+        padding: 8px;
+        color: map-get($foreground, base);
+        .mat-icon {
+          font-size: 36px;
+          height: 36px;
+          width: 36px;
+        }
+
+      }
+      &__label {
+        color: map-get($foreground, secondary-text);
+        //@include for-phone-only() {
+        //  display: none;
+        //}
+      }
+    }
+  }
+}
+@mixin filterChips ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .filter-panel {
+    min-width: 440px !important;
+    padding: 24px;
+    .mat-menu-content {
+      padding: 0 16px;
+    }
+  }
+  .filter-bar {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    @include for-phone-only {
+      display: none;
+    }
+    @include for-tablet-portrait-up () {
+      display: none;
+    }
+    @include for-tablet-landscape-up () {
+      display: flex;
+    }
+  }
+  .filter-chip-list {
+    display: flex;
+    overflow: auto;
+    color: map-get($foreground, text);;
+    max-width: 100%;
+    .filter-chip {
+      border: 1px solid map-get($foreground, text);
+      border-radius: 18px;
+      margin-right: 16px;
+      margin-bottom: 8px;
+      min-width: auto;
+      font-weight: 400;
+    }
+    .filter-chip--square {
+      border-radius: 4px;
+    }
+  }
+  .filtersSheet {
+    padding: 0 !important;
+    &__header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      border-bottom: 1px solid map-get($foreground, divider);
+      padding: 12px 16px;
+      z-index: 5;
+      max-width: 100%;
+      width: 100%;
+    }
+    &__footer {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      border-bottom: 1px solid map-get($foreground, divider);
+      padding: 0 16px;
+      z-index: 5;
+      max-width: 100%;
+    }
+  }
+  .filterOptionsWrapper {
+    width: 100%;
+    padding: 8px 16px;
+  }
+  .filterOptionGroup {
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid  map-get($foreground, dividers);
+  }
+  .filterOptionTitle {
+    color: map-get($foreground, text);
+    font-size: 16px;
+    font-weight: 500;padding: 16px;
+    margin-bottom: 4px;
+  }
+  .filterOptionItem {
+    padding: 8px 0;
+    display: block;
+    width: 100%;
+  }
+  .mat-slider {
+    width: 100%;
+    margin: 12px 0;
+    .mat-slider-thumb-label {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+@mixin timeSlotChips ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .timeSlots {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    .timeSlotsList {
+      .timeSlotchip {
+        border-radius: 4px;
+        color: white;
+        background: black;
+        cursor: pointer;
+        &--default {
+          background: white ;
+          color: black;
+          border: 2px solid black;
+        }
+        &--more {
+          background: white ;
+          color: black;
+        }
+      }
+
+    }
+  }
+
+}
+@mixin nav-bar($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .nav-bar {
+    width: 100%;
+    height: 48px;
+    position: relative;
+    display: flex;
+    background-color: map-get($background, background);
+    z-index: 5;
+    @include for-phone-only {
+      display: none;
+    }
+
+    @include for-tablet-portrait-up() {
+      position: sticky;
+      max-width: 100%;
+      top: $header-height;
+      border-bottom: 1px solid map-get($foreground, divider);
+      //box-shadow: $shadow-primary;
+    }
+    &__item{
+      color: map-get($foreground, text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        color: map-get($accent, default);
+      }
+      &.active {
+        color: map-get($accent, default);
+        border-bottom:2px solid map-get($accent, default);
+      }
+    }
+  }
+}
+@mixin masonryLayout ($theme){
+  .masonry-container {
+     margin: 16px 0;
+     max-height: 400px;
+     overflow: hidden;
+      .mdc-image-list__item {
+        border-radius: 8px;
+        overflow: hidden;
+      }
+   }
+  .my-masonry-image-list {
+    //@include image-list.masonry-columns(5);
+    //@include image-list.standard-columns(5);
+  }
+}
+@mixin erg-menu($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .erg-menu {
+    width: 100%;
+    padding: 0 16px;
+    position: relative;
+    &--no-padding {
+      padding: 0 0;
+    }
+    &__title {
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: 500;
+      width: 100%;
+    }
+    &__menu-item {
+      padding: 8px 0;
+      display: flex;
+      width: 100%;
+      font-weight: 500;
+      margin-inline-end: 16px;
+      flex: 1;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-basis: 0.000000001px;
+      &__border {
+        border-bottom: 1px solid map-get($foreground, divider);
+      }
+      &__title {
+        display: flex;
+        flex-direction: column;
+        .heading {
+          font-size: 14px;
+          color: map-get($foreground, text);
+        }
+        &__text {
+          font-size: 14px;
+          color: map-get($foreground, secondary-text);
+        }
+
+      }
+      &__price {
+        font-size: 20px;
+        color: map-get($primary, default);
+      }
+      &__tile {
+
+      }
+
+    }
+  }
+}
+@mixin erg-mat-menu($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .erg-mat-menu {
+   padding: 16px;
+    &--np {
+      padding: 0;
+      .mat-menu-content {
+        padding: 0;
+      }
+      .mat-menu-body {
+        padding: 16px;
+      }
+    }
+    &--medium {
+      min-width: 240px;
+    }
+    &__footer {
+      border-top: 1px solid map-get($foreground, divider);
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 16px;
+    }
+  }
+}
+@mixin erg-rating-stars($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+    .erg-ratings {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 12px;
+      margin-bottom: 8px;
+      color: map-get($foreground, secondary-text);
+      &--large {
+        .erg-ratings {
+          font-size: 24px;
+          &__starButton {
+            font-size: 24px;
+            line-height: 36px !important;
+            height: 36px;
+            width: 36px;
+          }
+        }
+      }
+      &__users {
+
+      }
+      &__value {
+
+      }
+      &__stars {
+        display: flex;
+        align-items: center;
+      }
+      &__starButton {
+        font-size: 12px;
+        line-height: 16px !important;
+        height: 16px;
+        width: 16px;
+
+      }
+    }
+}
+@mixin modal-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $empty-icon-height: 56px;
+  $text-color: mat-color($foreground, text);
+  $divider: map-get($foreground, dividers);
+  .modal {
+    &--small {
+      max-width: 100vw !important;
+      .mat-dialog-content {
+        margin: 0;
+        padding: 0;
+        max-height: 80vh;
+      }
+      color: $text-color;
+      .mat-dialog-container {
+        min-width: 540px;
+        max-width: 540px;
+        @include for-phone-only() {
+          min-width: 80vw !important;
+        }
+        .scroll-content {
+          border-top: 1px solid $divider;
+          border-bottom: 1px solid $divider;
+        }
+      }
+      .mat-dialog-actions {
+        margin-bottom: 0;
+        &[align='end'] {
+          justify-content: flex-end;
+        }
+
+        &[align='center'] {
+          justify-content: center;
+        }
+      }
+
+    }
+
+    &--medium {
+      color: $text-color;
+      @include for-phone-only() {
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+      .mat-dialog-content {
+        margin: 0;
+        padding: 0;
+        max-height: 80vh;
+        @include for-phone-only() {
+          min-width: 100% !important;
+          max-width: 100% !important;
+        }
+      }
+      .mat-dialog-container {
+        min-width: 720px !important;
+        max-width: 720px !important;
+          @include for-phone-only() {
+            min-width: 80vw !important;
+          }
+        @include for-tablet-portrait-up() {
+          min-width: 80vw !important;
+        }
+        @include for-tablet-portrait-up() {
+          min-width: 80vw !important;
+        }
+        .scroll-content {
+          border-top: 1px solid $divider;
+          border-bottom: 1px solid $divider;
+          box-sizing: border-box;
+
+        }
+      }
+      .mat-dialog-actions {
+        margin-bottom: 0;
+        &[align='end'] {
+          justify-content: flex-end;
+        }
+
+        &[align='center'] {
+          justify-content: center;
+        }
+      }
+    }
+    &--large {
+      .mat-dialog-container {
+        padding: 24px;
+      }
+      //.mat-dialog-content {
+      //  margin-left: 0   !important;
+      //  margin-right: 0  !important;
+      //}
+    }
+    &--stepper {
+      .mat-dialog-container {
+        padding: 0 !important;
+        @include for-phone-only() {
+          min-width: 80vw !important;
+        }
+        @include for-tablet-portrait-up(){
+          min-width: 40vh !important;
+          max-width: 780px !important;
+        }
+      }
+      .mat-dialog-content {
+        margin: 0;
+        padding: 0;
+        height: calc(100vh - 74px);
+        max-height: 72vh;
+        @include for-tablet-portrait-up() {
+          height: auto;
+        }
+        @include for-desktop-up {
+          height: auto;
+        }
+      }
+      .c-title {
+        font-weight: 500;
+        &--border {
+          border-bottom: 1px solid map-get($foreground, divider);
+        }
+      }
+    }
+    &--menu {
+      color: $text-color;
+      @include for-phone-only() {
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+      .mat-dialog-content {
+        margin: 0;
+        padding: 0;
+        max-height: 80vh;
+        @include for-phone-only() {
+          min-width: 100% !important;
+          max-width: 100% !important;
+        }
+      }
+      .mat-dialog-container {
+        min-width: 60vw !important;
+        max-width: 60vw !important;
+        @include for-phone-only() {
+          min-width: 60vw !important;
+        }
+        @include for-tablet-portrait-up() {
+          min-width: 60vw !important;
+        }
+        @include for-tablet-portrait-up() {
+          min-width: 60vw !important;
+        }
+        .scroll-content {
+          border-top: 1px solid $divider;
+          border-bottom: 1px solid $divider;
+          box-sizing: border-box;
+
+        }
+      }
+      .mat-dialog-actions {
+        margin-bottom: 0;
+        &[align='end'] {
+          justify-content: flex-end;
+        }
+
+        &[align='center'] {
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .mat-dialog-container {
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.24);
+    color: inherit;
+    overflow-y: hidden;
+    padding: 1.875rem 1rem;
+    max-height: 100vh;
+    position: relative;
+
+    .mat-dialog-title {
+      margin: 0;
+      padding-bottom: 8px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: calc(15 / 13 * 100%);
+      line-height: 1;
+      //padding-inline-end: 20px;
+      //padding-inline-start: 20px;
+      padding-top: 0;
+      font-weight: 500;
+    }
+    .dialog-body {
+      width: 100%;
+      padding: 8px 20px;
+      max-height: none;
+      margin: 0;
+    }
+    .mat-dialog-chip__list {
+      max-height: 20vh;
+      overflow: auto;
+    }
+    .mat-dialog-actions {
+      padding-inline-end: 20px;
+      padding-inline-start: 20px;
+      padding-top: 20px;
+      padding-bottom: 8px;
+      &__spaced {
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .scroll-content {
+      max-height: 40vh;
+      overflow: auto
+    }
+  }
+}
+@mixin bottom-sheet($theme) {
+  .bottom-sheet {
+    &--default {
+      &.mat-bottom-sheet-container {
+        min-width: 70vw ;
+        @include for-phone-only() {
+          min-width: 100vw ;
+        }
+      }
+
+    }
+  }
+}
+@mixin user-modals($theme) {
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .user-modal {
+    .mat-dialog-container {
+      min-height: 65vh;
+      width: 460px;
+      min-width: 460px;
+      max-width: 460px;
+      text-align: center;
+      @include for-phone-only() {
+        min-width: 80vw;
+      }
+    }
+    .mat-dialog-content {
+      min-height: 100%;
+    }
+    .mat-dialog-title {
+      //padding: 0 !important;
+      font-size: 1.5rem;
+      line-height: 1.165;
+    }
+    .title--primary {
+      font-weight: 500;
+    }
+    .link {
+      color: map-get($accent, default);
+      font-size: 16px;
+      font-weight: 500;
+      margin: 12px 0;
+    }
+    .text-left {
+      font-size: 14px;
+      justify-content: center;
+      text-align: center !important;
+      color: map-get($foreground, secondary-text);
+    }
+  }
+}
+@mixin reviews($theme){
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+    .reviews {
+      &__item {
+        display: flex;
+        align-items: flex-start;
+        padding: 16px 0;
+        border-bottom: 1px solid map-get($foreground, divider);
+      }
+      &__itemContent {
+
+      }
+      &__userName {
+        font-size: 14px;
+        font-weight: 500;
+        color: map-get($foreground, text);
+      }
+      &__comment {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 12px 0;
+        color: map-get($foreground, secondary-text);
+      }
+    }
+  .reviews-form {
+    padding: 16px 0;
+    width: 100%;
+    .erg-ratings__users {
+      display: none !important;
+    }
+  }
+}
+@mixin avatar($theme) {
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .avatar {
+    border-radius: 24px;
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    background: map-get($background, hover);
+    margin-right: 16px;
+  }
+}
+@mixin ow-carousel($theme) {
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .owlCarouselContainer {
+    position: relative;
+  }
+  .ow-navs {
+    position: absolute;
+    @include for-phone-only(){
+        display: none !important;
+    }
+    @include for-tablet-portrait-up(){
+      display: none !important;
+    }
+    @include for-tablet-landscape-up(){
+      display: flex !important;
+    }
+   &__button {
+     height: 56px;
+     width: 56px;
+     border-radius: 30px;
+     background: map-get($background, background);
+     box-shadow: $shadow-primary;
+     color: map-get($foreground, text);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 24px;
+     cursor: pointer;
+
+   }
+    &__btnPrev {
+      left: -60px;
+      top: 30%;
+    }
+    &__btnNext {
+      right:  -60px;
+      top: 30%;
+    }
+  }
+  .owl-nav {
+    margin: 0 !important;
+  }
+  .owl-prev, .owl-next {
+    display: none !important;
+  }
+
+}
+@mixin auto-sugegstions ($theme) {
+  $primary: map-get($theme, primary);
+  //map-get($themes, primary)
+  $primary-contrast: map-get($theme, primary-contrast);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .autoList {
+    max-height: 300px;
+    overflow: auto;
+    max-width: none !important;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 12px 12px;
+      font-size: 14px;
+      border-bottom: 1px solid map-get($foreground, divider);
+      cursor: pointer;
+      &:hover {
+        background: map-get($background, hover);
+      }
+    }
+    &__content{
+      display: flex;
+      flex-direction: column;
+      margin: 0 12px;
+    }
+    &__title{
+      color: map-get($foreground, text);
+    }
+    &__subText{
+      color: map-get($foreground, secondary-text);
+    }
+  }
+}
+@mixin erg-icon-row ($theme)  {
+  .erg-icon-row {
+    &__item {
+      margin-right: 12px;
+    }
+  }
+}
+@mixin map-container ($theme){
+    .map-container {
+      width: 100% !important;
+      height: 400px;
+      border-radius: 4px;
+      box-shadow: $shadow-primary;
+      overflow: hidden;
+    }
+}
+@mixin searchWidget($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $border: map_get($foreground, divider);
+  $border-primary: map_get($foreground, divider);
+  .search_widget{
+    position: relative;
+    z-index: 5;
+
+    &--fixed {
+      position: sticky;
+      top: $header-height;
+    }
+    .search_widget_container{
+      width: 100%;
+      cursor: pointer;
+      .form-control{
+        background-color: map_get($background, background);
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        border-right: 1px solid $border;
+        border-left: none;
+      }
+      .input-group,input{
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 0;
+        width: 100%;
+        height: 56px;
+
+      }
+      .search-widget-input {
+        position: relative;
+        display: flex;align-items: center;
+        overflow: hidden;
+        margin-bottom: 0 !important;
+        width: 100%;
+      }
+      .half-circle {
+        background-color: map_get($background, card);
+        border: 1px solid $border;
+        border-radius: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        position: absolute;
+        width: 40px;
+        z-index: 10;
+        &--right {
+          right: -24px;
+        }
+        &--left {
+          left: -24px;
+        }
+      }
+      .gws-flights-form__swapper {
+        background-color: transparent;
+        color: map_get($foreground, text);
+        margin: auto -13px;
+        padding: 5px;
+        border-radius: 100%;
+        box-sizing: border-box;
+        height: 34px;
+        position: relative;
+        width: 34px;
+        z-index: 15;
+      }
+      .search-widget-input:focus, .search-widget-input:active {
+        .form-control {
+          border-top: 1px solid $border-primary;
+          border-bottom: 1px solid $border-primary;
+          border-right: 1px solid $border-primary;
+        }
+        .half-circle {
+          border: 1px solid $border-primary;
+        }
+        .input-group-prepend {
+          border-top: 1px solid $border-primary;
+          border-bottom: 1px solid $border;
+          border-left: 1px solid $border;
+        }
+        .input-group-append {
+          border-top: 1px solid $border-primary;
+          border-bottom: 1px solid $border-primary;
+          border-right: 1px solid $border-primary;
+        }
+      }
+      .btn{
+        background-color: #0f4c97;
+        display: table-cell;
+        vertical-align: middle;
+        height: 50px;
+      }
+      .btn-primary{
+        background-color: #0f4c97 !important;
+        border-color: #0f4c97 !important;
+      }
+      .input-group{
+        .input-group-prepend{
+          height: 100%;
+          display: flex;
+          align-items: center;
+          padding-left:  12px;
+          padding-right:  4px;
+          background-color: map_get($background, background);
+          border-top: 1px solid $border;
+          border-bottom: 1px solid $border;
+          border-left: 1px solid $border;
+          border-right: none;
+          border-bottom-left-radius: 4px;
+          border-top-left-radius: 4px;
+          color: map-get($primary, default);
+          &--left {
+            padding-left:  24px;
+          }
+        }
+        .input-group-append{
+          display: flex;
+          align-items: center;
+          padding-left:  8px;
+          padding-right:  4px;
+          background-color: map_get($background, background);
+          border-top: 1px solid $border;
+          border-bottom: 1px solid $border;
+          border-right: 1px solid $border;
+          border-bottom-right-radius: 4px;
+          border-top-right-radius: 4px;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .mobile-search {
+    display: none;
+  }
+  .search-page {
+    position: relative;
+    .c-search-form {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .searchBtn-container {
+      display: none;
+      @include for-phone-only {
+        display: flex;
+      }
+    }
+    .mobile-search {
+      display: none;
+      @include for-phone-only {
+        display: block;
+      }
+      &--display {
+        @include for-phone-only {
+          display: block;
+        }
+
+      }
+      &--display-none {
+        @include for-phone-only {
+          display: none;
+        }
+      }
+    }
+    .web-search {
+      display: flex;
+      @include for-phone-only {
+        display: none;
+      }
+      &--display {
+        @include for-phone-only {
+          display: block;
+        }
+      }
+      &--display-none {
+        @include for-phone-only {
+          display: none;
+        }
+      }
+    }
+    .filters-toogle {
+      position: fixed;
+      z-index: 100;
+      bottom: 36px;
+      right: 24px;
+      display: none;
+      @include for-phone-only {
+        display: block;
+      }
+      @include for-tablet-portrait-up() {
+        display: block;
+      }
+      @include for-tablet-landscape-up() {
+        display: none;
+      }
+    }
+  }
+
+}
+@mixin customScrollBar ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .customScroll, .mat-select-panel {
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background:  map-get($background, app-bar);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: map-get($foreground, icon);
+      border-radius: 8px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: map-get($foreground, text);
+    }
+  }
+
+}
+@mixin orderContainer ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .orderContainer {
+    position: relative;
+    height: 100%;
+    //border-radius: 8px;
+    overflow: hidden;
+    box-shadow: $shadow-primary;
+    &__header {
+      position: sticky;
+      width: 100%;
+      top: 0;
+      align-items: center;
+      padding:0 16px;
+      display: flex;
+      justify-content: space-between;
+      height: 56px;
+      font-weight: 500;
+      background-color: map-get($primary, default);
+      color: map-get($primary, default-contrast);
+    }
+    &__content {
+      padding:12px 16px;
+      height: 100%;
+      overflow: auto;
+    }
+    &__footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      height: 56px;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      padding:0 16px;
+      background-color: map-get($primary, default);
+      color: map-get($primary, default-contrast);
+      &__text {
+        &--secondary {
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+@mixin PlaceHolder ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .emptyResult {
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__image {
+      width: 50%;
+      height: auto;
+    }
+    &__heading {
+      font-size: 16px;
+      font-weight: 500;
+      color: map-get($primary, default);
+    }
+    &__text {
+      font-size: 16px;
+      color: map-get($foreground, secondary-text);
+    }
+  }
+}
+@mixin summary-item($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .summary-item {
+    display: flex;
+    margin-bottom: 16px;
+    .imageWrapper {
+      display: flex;
+      margin-right: 16px;
+      .imageClass {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 4px;
+      }
+    }
+    .contentWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .itemTitle {
+        display: flex;
+        color:map-get($primary, default);
+        text-decoration: none;
+        justify-content: flex-start;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .itemsDetails {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__item {
+          display: flex;
+          align-items: center;
+          margin-top: 8px;
+          margin-right: 24px;
+          color: map-get($foreground, secondary-text);
+        }
+        .mat-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+@mixin block-container ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .blockContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    @include for-phone-only() {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    @include for-tablet-portrait-up() {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    @include for-tablet-landscape-up() {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    .blockContentItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 12px 16px;
+      &__image {
+         height: 150px;
+        width: auto;
+        margin-bottom: 16px;
+      }
+      &__text {
+        font-size: 12px;
+        color:map-get($foreground, secondary-text) ;
+        margin-bottom: 16px;
+      }
+      &--mobile {
+        flex-direction: row;
+        .blockContentItem__image {
+          height: 100px;
+          width: auto;
+          margin-bottom: 0;
+        }
+      }
+
+    }
+
+  }
+  .btn-group-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+@mixin labledForms($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .labeledFormGroup {
+    border-radius: 8px;
+    border: 1px solid map-get($foreground,divider);
+    overflow: hidden;
+    margin: 24px 0;
+  }
+  .labledForemItems {
+    padding: 12px 16px;
+    font-size: 16px;
+    color: map-get($foreground, text);
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid map-get($foreground,divider);
+    @include for-phone-only() {
+      flex-direction: column;
+      &__label {
+        font-weight: 500;
+        flex-basis: auto !important;
+        color: map-get($foreground, secondary-text);
+      }
+    }
+    @include for-tablet-portrait-up() {
+      flex-direction: row;
+    }
+    &__label {
+      font-weight: 500;
+      flex-basis: 156px;
+      color: map-get($foreground, secondary-text);
+    }
+    &__value {
+      color: map-get($foreground, text);
+    }
+  }
+}
+@mixin floatingBasket($theme) {
+  .floating_basket_btn_container {
+    position: fixed;
+    z-index: 10;
+    bottom:48px;
+    right: 48px;
+
+  }
+  .floatingBasket {
+    &.mat-right-sheet-container {
+      padding: 0 ;
+    }
+  }
+}
+@mixin ng5-slider($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .ng5-slider {
+    .ng5-slider-pointer{
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      top: -6px;
+      background-color: map-get($primary, default);
+      z-index: 3;
+      border-radius: 16px;
+      &:after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border-radius: 4px;
+        background: #fff;
+      }
+
+    }
+    .ng5-slider-bar.ng5-slider-selection {
+      background-color: map-get($primary, default);
+    }
+    .ng5-slider-active {
+      &:after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border-radius: 4px;
+        background:  map-get($warn, default)!important;
+      }
+    }
+  }
+}
+
+
+
+//---page scpecifics--
+@mixin home-page($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $border:map-get($foreground, divider) ;
+  .joinUs {
+    padding: 24px 0;
+    margin: 24px 0;
+    border-top: 1px dashed $border;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+  }
+}
+@mixin search-page($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $border:map-get($foreground, divider) ;
+
+}
+@mixin product-page($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .product-page{
+    .section {
+      padding: 24px 0;
+    }
+    .titleRow {
+      .title {
+        font-size: 36px;
+        font-weight: 400;
+        color: map-get($foreground, text);
+      }
+      .location {
+        margin-bottom: 8px;
+        color: map-get($foreground, text);
+      }
+      .ratings {
+        color: map-get($foreground, secondary-text);
+      }
+      .priceRow {
+        font-size: 24px;
+        line-height: 24px;
+        color: map-get($foreground, text);
+        margin: 12px 0;
+        display: flex;
+        align-items: flex-end;
+        .ratio {
+          font-size: 16px;
+          color: map-get($foreground, secondary-text);
+        }
+      }
+    }
+    .description {
+      margin: 24px 0;
+      font-size: 14px;
+      color: map-get($foreground, secondary-text);
+    }
+    .tab-content-container {
+      padding: 16px;
+    }
+    .formContainer {
+      transition: all 0.5s ease; // note that we're transitioning transform, not height!
+      height:auto;
+      overflow: hidden;
+       // keep the top of the element in the same place. this is optional.
+      @include for-phone-only () {
+
+      }
+      &--h0 {
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        @include for-phone-only () {
+          height: auto;
+        }
+      }
+      &--h-auto {
+       height: auto;
+      }
+    }
+    .main-image-slider {
+      @include for-tablet-portrait-up() {
+        display: none;
+      }
+    }
+    .imageheader {
+      width: 100%;
+      height: 600px;
+      display: flex;
+      position: relative;
+      @include for-phone-only() {
+        height: 200px;
+        display: none;
+      }
+      @include for-tablet-portrait-up() {
+        height: 300px;
+      }
+      @include for-tablet-landscape-up() {
+        height: 600px;
+      }
+      &__col {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+      }
+      &__imageitem {
+        padding: 8px;
+        width: 100%;
+        height: 100%;
+        &--two {
+          height: 50%;
+        }
+        &--three {
+          height: 30%;
+        }
+        &--seven {
+          height: 70%;
+        }
+      }
+      &__fab {
+          position: absolute;
+        right: 24px;
+        bottom: 24px;
+      }
+      &__image {
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+    }
+    .main-image-slide {
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: calc(100% + 1px);
+      width:100%;
+      height: 280px;
+      max-height: 280px;
+      object-fit: cover;
+    }
+    .menuWrapper {
+      position: relative;
+      .gradient-overlay {
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 0, 0, 0)), color-stop(1, map-get($background, background)));
+        position: absolute;
+        height: 50%;
+        width: 100%;
+        bottom: 0;
+        z-index: 1;
+      }
+
+    }
+    .menu-show-more {
+      z-index: 3;
+    }
+  }
+  .facilitiesWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: -4px;
+  }
+  .facilitiesListWrapper {
+    margin: 150px 0;
+  }
+  .facilitiesItem {
+    display: flex;
+    margin-top: 8px;
+    margin-right:12px;
+    margin-bottom:8px;
+    &__icon {
+      margin-right: 12px;
+    }
+    &__titleWrapper {
+
+    }
+    &__title {
+      color: map-get($foreground, text);
+      font-weight: 500;
+    }
+    &__subTitle {
+      color: map-get($foreground, secondary-text);
+    }
+  }
+  //.lightbox-wrapper {
+  //  width: 50% !important;
+  //  height: 50% !important;
+  //  margin: auto;
+  //  top: 20% !important;
+  //}
+  .reserve-fab {
+    @include for-phone-only {
+      display: block;
+    }
+    @include for-tablet-landscape-up() {
+      display: none;
+    }
+  }
+
+
+}
+@mixin confirmation-page($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .confirmation-page {
+    padding-top: 50px;
+    .coupon_input {
+      max-width: 360px;
+    }
+  }
+  .mat-drawer-side {
+    @include for-phone-only() {
+      width: 100%;
+    }
+  }
+}
+@mixin form-field-container($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .formFieldContainer {
+    border-radius: 8px;
+    border: 2px solid map-get($primary, default);
+    padding: 15px;
+    background-color: map-get($background, card);
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+    &.webformFieldContainer {
+      @include for-phone-only() {
+
+        display: none;
+      }
+    }
+    @include for-phone-only() {
+      position: relative;
+      max-width: 100%;
+      top: 0;
+    }
+    @include for-tablet-landscape-up() {
+      //position: sticky;
+      max-width: 100%;
+      top:($header-height + 16px) ;
+
+    }
+    &--small {
+      border: none;
+    }
+    &--sticky {
+      position: sticky;
+      top:($header-height + 16px) ;
+      max-width: 100%;
+    }
+  }
+
+}
+
+
+@mixin customScrollBar ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .customScroll {
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background:  map-get($background, hover);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: map-get($foreground, icon);
+      border-radius: 8px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: map-get($foreground, text);
+    }
+  }
+
+}
+@mixin common-Classes ($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .secondary-text {
+    color: map-get($foreground, secondary-text);
+  }
+}
+
+
+@mixin erg-icons-s($theme) {
+
+  .hg-icon {
+    font-family: 'hg-icon' !important;
+    speak: unset;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Enable Ligatures ================ */
+    letter-spacing: 0;
+    -webkit-font-feature-settings: "liga";
+    -moz-font-feature-settings: "liga=1";
+    -moz-font-feature-settings: "liga";
+    -ms-font-feature-settings: "liga" 1;
+    font-feature-settings: "liga";
+    -webkit-font-variant-ligatures: discretionary-ligatures;
+    font-variant-ligatures: discretionary-ligatures;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

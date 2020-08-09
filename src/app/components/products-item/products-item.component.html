@@ -1,0 +1,16 @@
+<div matRipple class="product-tile" routerLink="{{ model.url }}">
+  <div class="product-tile-content {{ model.type }}">
+    <div class="img-holder">
+      <img class="image" src="{{ model.imgUrl }}" alt="image">
+    </div>
+    <div class="detail-holder">
+      <img class="itemLogo" src="{{ model.logo}}" alt="logo">
+      <app-rating-stars></app-rating-stars>
+      <div class="itemTitle line-clamp line-clamp-2">{{ model.Name}}</div>
+      <div class="price-holder">
+        <div> LKR {{ model.Price }}</div>
+        <div class="subTitle">Approx 2 Person</div>
+      </div>
+    </div>
+  </div>
+</div>

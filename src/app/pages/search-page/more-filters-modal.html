@@ -1,0 +1,48 @@
+<div mat-dialog-title>
+  <div>More Filters</div>
+</div>
+<mat-dialog-content class="mat-typography modal-body">
+  <div class="filterOptionsWrapper">
+    <div class="filterOptionGroup">
+      <div class="filterOptionTitle">Filter Title</div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <div class="filterOptionItem">
+              <mat-checkbox color="warn">FilterOption</mat-checkbox>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="filterOptionItem">
+              <mat-checkbox color="warn">FilterOption</mat-checkbox>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="filterOptionItem">
+              <mat-checkbox color="warn">FilterOption</mat-checkbox>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="filterOptionItem">
+              <mat-checkbox color="warn">FilterOption</mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions class="flex-box --spaced" >
+  <div class="">
+    <button mat-stroked-button >clear</button>
+  </div>
+  <div class="">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Apply</button>
+  </div>
+
+</mat-dialog-actions>

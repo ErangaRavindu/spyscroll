@@ -1,0 +1,276 @@
+<mat-drawer-container class="example-container" autosize>
+
+
+  <div class="example-sidenav-content">
+    <div class="container confirmation-page">
+
+      <section>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg 6 mb-4">
+            <div class="flex-container flex-container--row">
+              <h1 class="padding--bottom-m">Successfully Reserved</h1>
+              <div >Cafe Plus 94 for two people  on 21st of July 8.30 PM</div>
+              <div class="padding--bottom-s">Colombo, Sri Lanka</div>
+              <h6 class="padding--bottom-s">What To Know Before You Go!</h6>
+              <p >A note from the restaurant</p>
+              <p class="secondary-text">Thank you for choosing graze Kitchen - Hilton Colombo. Should your plans Change, Please let Us know. We lok forword to serving you</p>
+              <mat-form-field class="input-type-1 input-type-1--warn hasbutton coupon_input" appearance="outline" >
+                <input matInput placeholder="Ex. pat@example.com">
+                <button matSuffix mat-flat-button color="warn">Add Coupon</button>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  mb-4">
+            <div class="map-container">
+              <google-map height="400px" widtht="100%"></google-map>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <hr>
+      <section id="Menu">
+        <div class="c-title">
+          <div class="c-title--primary c-title--medium">Menu</div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Kids Menu">
+                <div class="tab-content-container">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="erg-menu__title">Breakfast</div>
+                      </div>
+                      <div class="erg-menu">
+                        <div class="row">
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button class="shadow_none" mat-mini-fab color="primary" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button class="shadow_none" mat-mini-fab color="primary" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button class="shadow_none" mat-mini-fab color="primary" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button class="shadow_none" mat-mini-fab color="primary" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button class="shadow_none" mat-mini-fab color="primary" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                            <div class="erg-menu__menu-item erg-menu__menu-item__border">
+                              <div class="erg-menu__menu-item__title">
+                                <div class="heading">Bacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg SandwichBacon & Egg Sandwich</div>
+                                <div class="erg-menu__menu-item__price">LKR590.00</div>
+                              </div>
+                              <div class="heading">
+                                <button mat-mini-fab color="primary" class="shadow_none" [matMenuTriggerFor]="size">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <mat-menu #size="matMenu">
+                                  <button mat-menu-item (click)="addToBasket()">Large</button>
+                                  <button mat-menu-item (click)="addToBasket()">Medium</button>
+                                  <button mat-menu-item (click)="addToBasket()">Small</button>
+                                </mat-menu>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Al Carte Menu"> Content 2 </mat-tab>
+              <mat-tab label="Beverage Menu"> Content 3 </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+
+      </section>
+
+    </div>
+  </div>
+  <mat-drawer #drawer class="example-sidenav" mode="side" position="end" style="position: fixed; top: 56px">
+    <div class="orderContainer">
+      <div class="orderContainer__header">
+        <div class="">Order Summary</div>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="drawer.toggle()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+      <div class="orderContainer__content">
+        <!--    <div class="emptyResult">-->
+        <!--      <app-empty-loader></app-empty-loader>-->
+        <!--      <div class="emptyResult__heading">No Items Added</div>-->
+        <!--    </div>-->
+
+        <div class="widget-spinner">
+          <div class="labelWrapper">
+            <div class="label label--primary">Bacon & Egg Sandwich</div>
+            <div class="label label--primary">LKR 5000.00</div>
+            <div class="label label--secondary">Small</div>
+          </div>
+          <div class="spinnerWrapper">
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+            <div class="numberpicker__flipper-value">1</div>
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="widget-spinner">
+          <div class="labelWrapper">
+            <div class="label label--primary">Bacon & Egg Sandwich</div>
+            <div class="label label--primary">LKR 5000.00</div>
+            <div class="label label--secondary">Small</div>
+          </div>
+          <div class="spinnerWrapper">
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+            <div class="numberpicker__flipper-value">1</div>
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="widget-spinner">
+          <div class="labelWrapper">
+            <div class="label label--primary">Bacon & Egg Sandwich</div>
+            <div class="label label--primary">LKR 5000.00</div>
+            <div class="label label--secondary">Small</div>
+          </div>
+          <div class="spinnerWrapper">
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+            <div class="numberpicker__flipper-value">1</div>
+            <div class="widgets-numberpicker__flipper">
+              <button mat-icon-button class="erg-btn erg-btn-opBtn erg-btn--small">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="orderContainer__footer">
+        <div class="">
+          <div class="orderContainer__footer__text--secondary">3 Items</div>
+          <div class="">LKR 5000.00</div>
+        </div>
+
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="drawer.toggle()">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </mat-drawer>
+</mat-drawer-container>
+
+<div class="floating_basket_btn_container">
+  <button mat-fab color="warn" (click)="drawer.toggle()" id="cart-button" matBadge="8" matBadgePosition="after" matBadgeColor="primary" class="extended-fab">
+    <mat-icon>shopping_cart</mat-icon><span class="extended-fab__label">Cart</span>
+  </button>
+</div>

@@ -1,0 +1,148 @@
+<div class="search-page">
+  <button mat-fab color="warn" class="filters-toogle" (click)="openBottomSheet()">
+    <mat-icon>filter_alt</mat-icon>
+  </button>
+  <section class="masthead search_widget search_widget--fixed">
+    <div class="c-card c-search-form form-list search_widget">
+      <div class="container">
+        <div class="widgetHere">
+          <app-search-widget></app-search-widget>
+        </div>
+
+      </div>
+      <div class="container filter-bar">
+        <div class="row">
+          <div class="col-12 ">
+            <div class="filter-chip-list">
+              <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+                <mat-select [formControl]="toppings" [(value)]="defaultValue" multiple placeholder="ALL">
+                  <mat-select-trigger>
+                    {{toppings.value ? toppings.value[0] : ''}}
+                    <span *ngIf="toppings.value?.length > 1">
+                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+                <mat-select [formControl]="bankMultiCtrl" placeholder="Banks" [multiple]="true">
+                  <mat-select-search [formControl]="bankMultiFilterCtrl"></mat-select-search>
+                  <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+                    {{bank.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+                <mat-select [(value)]="selectedSort">
+                  <mat-option [value]="option.value" *ngFor="let option of sort">{{ option.viewValue }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-menu #sortByPrice="matMenu">
+                <button mat-menu-item>
+                  Rating
+                </button>
+                <button mat-menu-item>
+                 Popularity
+                </button>
+
+              </mat-menu>
+              <button class="filter-chip" mat-button [matMenuTriggerFor]="priceSlider">Price <mat-icon>arrow_drop_down</mat-icon></button>
+              <mat-menu #priceSlider="matMenu" class="erg-mat-menu erg-mat-menu--np erg-mat-menu--medium filter-panel">
+                <div (click) = "$event.stopPropagation()"  class="mat-menu-body">
+                  <div id="div_menu_content" (click)="noClickable($event)">
+                    <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+                  </div>
+
+                <div class="row mt-2">
+                  <div class="col-6">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Min Price</mat-label>
+                      <input [(ngModel)]="minValue" matInput type="number">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Max Price</mat-label>
+                      <input [(ngModel)]="maxValue" matInput type="number">
+                    </mat-form-field>
+                  </div>
+                </div>
+                </div>
+                <div (click) = "$event.stopPropagation()" class="erg-mat-menu__footer">
+                  <button (click)="resetForm()" color="primary" mat-button>Clear</button>
+                  <button color="primary" mat-flat-button (click)="closeMyMenu()">Done</button>
+                </div>
+              </mat-menu>
+              <button class="filter-chip" mat-button (click)="moreFilters()">More <mat-icon>filter_alt</mat-icon></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="search-results-container">
+    <div class="container">
+      <div class="row item-row">
+        <div class="col-12 itemRow__title">
+          <div class="title--primary">20 Results Found</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-search-result *ngFor="let searchType of ResultArray" [model]="searchType"></app-search-result>
+          <div matRipple class="item-wrapper" >
+            <div class="Ab08je">
+
+              <div class="imageWrapper">
+
+                <div class="imageWrapperInner">
+
+                  <div class="SJyhnc">
+
+                    <div class="zfeKmf">
+                      <ngx-skeleton-loader [theme]="{ height: '200px',width: '200px'}" count="1" animation="pulse" ></ngx-skeleton-loader>
+                      <img class="itemImage" src="" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="contentWrapper">
+                <div class="itemDetails">
+                  <div class="row1">
+                    <div class="labelsWrapper">
+                      <ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '150px'}"></ngx-skeleton-loader>
+                      <div class="name"><ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '250px'}"></ngx-skeleton-loader></div>
+                      <div class="locations"><ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '170px'}"></ngx-skeleton-loader></div>
+                    </div>
+                    <div class="priceWrapper">
+                      <div class="currencyWrapper">
+                        <div class="currency"><ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '100px'}"></ngx-skeleton-loader></div>
+                        <div class="value"><ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '50px'}"></ngx-skeleton-loader></div>
+                      </div>
+                      <div class="ratio"><ngx-skeleton-loader count="1" animation="pulse" [theme]="{ width: '800px'}"></ngx-skeleton-loader></div>
+                    </div>
+                  </div>
+                  <div class="row2 line-clamp line-clamp-3"></div>
+                  <div class="row3">
+                    <div class="timeSlots">
+                      <mat-chip-list class="timeSlotsList">
+                        <ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader>
+                      </mat-chip-list>
+                    </div>
+                  </div>
+                </div>
+                <div class="itemPriceDetails"><ngx-skeleton-loader count="1" animation="pulse"></ngx-skeleton-loader></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+

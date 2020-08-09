@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+@use "~@material/image-list";
+@use "~@material/image-list/mdc-image-list";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+//@import '~css-star-rating/scss/star-rating';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, sans-serif;}
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+/* Importing material SCSS file. */
+@import '~@angular/material/theming';
+@import "~normalize-scss/sass/normalize";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@font-face {
+  font-family: 'hg-icon';
+  src:  url('/assets/fonts/hangout.eot');
+  src:  url('/assets/fonts/hangout.eot') format('embedded-opentype'),
+  url('/assets/fonts/hangout.ttf?') format('truetype'),
+  url('/assets/fonts/hangout.woff?') format('woff'),
+  url('/assets/fonts/hangout.svg?') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@include mat-core();
+$erg-black: (
+  50 : #e1e2e4,
+  100 : #b3b6bc,
+  200 : #808590,
+  300 : #4d5463,
+  400 : #272f41,
+  500 : #010a20,
+  600 : #01091c,
+  700 : #010718,
+  800 : #010513,
+  900 : #00030b,
+  A100 : #5050ff,
+  A200 : #1d1dff,
+  A400 : #0000e9,
+  A700 : #0000cf,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$gin-accent: (
+  50 : #e8f5f7,
+  100 : #c5e7ea,
+  200 : #9fd7dc,
+  300 : #78c6ce,
+  400 : #5bbac4,
+  500 : #3eaeb9,
+  600 : #38a7b2,
+  700 : #309daa,
+  800 : #2894a2,
+  900 : #1b8493,
+  A100 : #cbf8ff,
+  A200 : #98f1ff,
+  A400 : #65eaff,
+  A700 : #4ce7ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$erg-app-primary: mat-palette($erg-black);
+$erg-app-accent:  mat-palette($gin-accent);
+$erg-app-warn:  mat-palette($mat-red);
+
+$erg-app-theme-light:   mat-light-theme($erg-app-primary, $erg-app-accent, $erg-app-warn);
+$erg-app-theme-dark:   mat-dark-theme($erg-app-primary, $erg-app-accent,$erg-app-warn);
+
+
+@import "themes/main";
+
+.erg-app-primary-light {
+  @include component-collective($erg-app-theme-light);
+}
+.erg-app-primary-dark {
+  @include component-collective($erg-app-theme-dark);
+}
+
+

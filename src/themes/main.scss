@@ -1,0 +1,65 @@
+@import "erg.components";
+@import "components/searchWidget";
+@import "~mat-right-sheet/right-sheet-theme";
+
+
+
+
+
+@mixin component-collective($theme) {
+  @include angular-material-theme($theme);
+  @include searchWidget($theme);
+  @include body-component-theme($theme);
+  @include erg-header($theme);
+  @include erg-footer($theme);
+  @include erg-master-header($theme);
+  @include erg-btn($theme);
+  @include erg-card-component-theme($theme);
+  @include erg-search__form-card($theme);
+  @include erg-form-list ($theme);
+  @include erg-divider-vert ($theme);
+  @include input-type-1($theme);
+  @include input-type-2($theme);
+  @include input-select-chip ($theme);
+  @include hero-header($theme);
+  @include searchBtn ($theme);
+  @include widget-spinner($theme);
+  @include product-tile($theme);
+  @include search-result-item($theme);
+  @include icon-block ($theme);
+  @include itemRow($theme);
+  @include product-tile-type2($theme);
+  @include filterChips ($theme);
+  @include timeSlotChips ($theme);
+  @include nav-bar($theme);
+  @include product-page($theme);
+  @include search-page($theme);
+  @include c-title($theme);
+  @include form-field-container($theme);
+  @include masonryLayout ($theme);
+  @include home-page($theme);
+  @include erg-menu($theme);
+  @include erg-rating-stars($theme);
+  @include modal-component-theme($theme);
+  @include user-modals($theme);
+  @include reviews($theme);
+  @include avatar($theme);
+  @include ow-carousel ($theme);
+  @include auto-sugegstions ($theme);
+  @include customScrollBar ($theme);
+  @include  erg-icon-row ($theme);
+  @include confirmation-page($theme);
+  @include orderContainer ($theme);
+  @include PlaceHolder($theme);
+  @include erg-mat-menu($theme);
+  @include summary-item($theme);
+  @include block-container ($theme);
+  @include labledForms($theme);
+  @include mat-right-sheet-theme($theme);
+  @include floatingBasket($theme);
+  @include map-container ($theme);
+  @include common-Classes ($theme);
+  @include erg-icons-s($theme);
+  @include bottom-sheet($theme);
+  @include ng5-slider($theme);
+};

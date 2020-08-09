@@ -1,0 +1,63 @@
+<div class="filtersSheet">
+  <div class="filtersSheet__header">
+    <button mat-icon-button class="" (click)="closeFilters()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <h6>Filters</h6>
+    <button mat-stroked-button >clear</button>
+  </div>
+  <div class="filterOptionsWrapper">
+    <div class="filterOptionGroup">
+      <div class="filterOptionTitle">Fliter Title</div>
+      <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+        <mat-select [formControl]="toppings" [(value)]="defaultValue" multiple placeholder="ALL">
+          <mat-select-trigger>
+            {{toppings.value ? toppings.value[0] : ''}}
+            <span *ngIf="toppings.value?.length > 1">
+                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="filterOptionGroup">
+      <div class="filterOptionTitle">Fliter Title</div>
+      <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+        <mat-select [formControl]="bankMultiCtrl" placeholder="Banks" [multiple]="true">
+          <mat-select-search [formControl]="bankMultiFilterCtrl"></mat-select-search>
+          <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+            {{bank.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="filterOptionGroup">
+      <div class="filterOptionTitle">Fliter Title</div>
+      <mat-form-field class="mat-chip mat-focus-indicator mat-primary mat-standard-chip input-select-chip filter-item" appearance="outline">
+        <mat-select [(value)]="selectedSort">
+          <mat-option [value]="option.value" *ngFor="let option of sort">{{ option.viewValue }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-menu #sortByPrice="matMenu">
+        <button mat-menu-item>
+          Rating
+        </button>
+        <button mat-menu-item>
+          Popularity
+        </button>
+
+      </mat-menu>
+
+    </div>
+    <div class="filterOptionGroup">
+      <div class="filterOptionTitle">Fliter Title</div>
+      <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+    </div>
+
+  </div>
+  <div class="filtersSheet__footer">
+    <button mat-flat-button color="warn" class="erg-btn--full-width erg-btn--large">Apply</button>
+  </div>
+</div>
+

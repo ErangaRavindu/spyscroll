@@ -1,0 +1,721 @@
+<div class="container-fluid product-page">
+  <div class="main-image-slider">
+    <owl-carousel-o [options]="customSlider" #mainImageSlider>
+      <ng-container *ngFor="let mainImage of mainImagesArray">
+        <ng-template class="slide" carouselSlide [id]="mainImage.id">
+          <img class="main-image-slide" [src]="mainImage.imgUrl">
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <div class="row">
+
+    <div class="col-12">
+
+      <div class="imageheader">
+        <div class="imageheader__col">
+          <div class="imageheader__imageitem">
+            <img class="imageheader__image"
+                 src="https://i1.wp.com/www.uplist.lk/wp-content/uploads/2018/03/the-fortress-hotel-table.jpg">
+          </div>
+        </div>
+        <div class="imageheader__col">
+          <div class="imageheader__imageitem imageheader__imageitem--two">
+            <img class="imageheader__image" src="https://q-cf.bstatic.com/images/hotel/max1280x900/159/159542526.jpg">
+          </div>
+          <div class="imageheader__imageitem imageheader__imageitem--two">
+            <img class="imageheader__image"
+                 src="https://pix10.agoda.net/hotelImages/906312/-1/3f61cf6a6e73376f114ebf008ee73a85.jpg?s=1024x768">
+          </div>
+        </div>
+        <div class="imageheader__col">
+          <div class="imageheader__imageitem imageheader__imageitem--three">
+            <img class="imageheader__image"
+                 src="https://i0.wp.com/www.uplist.lk/wp-content/uploads/2018/03/sun-hill-hotel-reception.jpg?ssl=1">
+          </div>
+          <div class="imageheader__imageitem imageheader__imageitem--seven">
+            <img class="imageheader__image" src="https://r-cf.bstatic.com/images/hotel/max1280x900/139/139028051.jpg">
+          </div>
+        </div>
+        <div class="imageheader__col">
+          <div class="imageheader__imageitem">
+            <img class="imageheader__image"
+                 src="https://cdn.pixabay.com/photo/2015/02/28/11/47/forest-653448_960_720.jpg">
+          </div>
+        </div>
+        <div class="imageheader__fab">
+          <button mat-raised-button color="warn">View All</button>
+        </div>
+      </div>
+
+      <!--      <div class="masonry-container">-->
+      <!--        <ul class="mdc-image-list mdc-image-list&#45;&#45;masonry my-masonry-image-list">-->
+      <!--          <li class="mdc-image-list__item"-->
+      <!--              *ngFor="let image of list">-->
+
+      <!--            <img class="mdc-image-list__image"-->
+      <!--                 [src]="image">-->
+
+      <!--          </li>-->
+      <!--        </ul>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>
+<div class="container product-page">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+      <div appScrollSpy class="nav-bar sidenav">
+        <a matRipple appScrollSpyItem id="overview"   class="nav-bar__item overview">Overview</a>
+        <a matRipple appScrollSpyItem   id="facilities" class="nav-bar__item facilities">Facilities</a>
+        <a matRipple appScrollSpyItem  id="Menu" class="nav-bar__item Menu">Menu</a>
+        <a matRipple appScrollSpyItem  id="Map" class="nav-bar__item">Map</a>
+        <a matRipple appScrollSpyItem id="Media" class="nav-bar__item Media">Media</a>
+        <a matRipple appScrollSpyItem id="Reviews" class="nav-bar__item Reviews">Reviews</a>
+      </div>
+      <app-scroll-spy>
+        <div appScrollSpyContent  id="overview" class="section">
+          <div class="titleRow">
+            <div class="title">
+              Cafe Plus 94
+            </div>
+            <div class="location">Colombo, Sri Lanka</div>
+            <div class="row padding--bottom-m">
+              <div class="col-12 erg-icon-row">
+                <mat-icon color="accent" class="erg-icon-row__item">wifi</mat-icon>
+                <mat-icon color="accent" class="erg-icon-row__item">free_breakfast</mat-icon>
+                <mat-icon color="accent" class="erg-icon-row__item">local_bar</mat-icon>
+                <mat-icon color="accent" class="erg-icon-row__item">restaurant_menu</mat-icon>
+              </div>
+            </div>
+            <app-rating-stars></app-rating-stars>
+            <div class="priceRow">
+              <div class="price">LKR 2,700.00</div>
+              <div class="ratio">&nbsp;/ Approx 2 People</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 filter-bar">
+              <mat-chip-list class="filter-chip-list">
+                <button class="filter-chip" mat-button>Dinner</button>
+                <button class="filter-chip" mat-button>Date</button>
+                <button class="filter-chip" mat-button>Organic</button>
+                <button class="filter-chip" mat-button>Good For Birthdays</button>
+              </mat-chip-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 description">
+              <p>{{(showMore) ? text : text | slice:0:900}}<span *ngIf="!showMore">...</span></p>
+            </div>
+            <div class="col-12 flex-container flex-container--center">
+              <button *ngIf="!showMore" (click)="showMore=true" mat-stroked-button class="">Show More</button>
+              <button *ngIf="showMore" (click)="showMore=false" mat-stroked-button class="">Show less</button>
+            </div>
+          </div>
+        </div>
+        <div appScrollSpyContent id="facilities">
+          <div class="">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Facilities</div>
+            </div>
+            <div class="container-fluid ">
+              <div class=" facilitiesWrapper margin--top-l">
+                <div class="facilitiesItem">
+                  <mat-icon color="accent" class="facilitiesItem__icon">airport_shuttle</mat-icon>
+                  <div class="">airport_shuttle</div>
+                </div>
+                <div class="facilitiesItem">
+                  <mat-icon color="accent" class="facilitiesItem__icon">family_restroom</mat-icon>
+                  <div class="">family_restroom</div>
+                </div>
+                <div class="facilitiesItem">
+                  <mat-icon color="accent" class="facilitiesItem__icon">wifi</mat-icon>
+                  <div class="">Free Wifi</div>
+                </div>
+                <div class="facilitiesItem">
+                  <mat-icon color="accent" class="facilitiesItem__icon">local_parking</mat-icon>
+                  <div class="">Free Parking</div>
+                </div>
+                <div class="facilitiesItem">
+                  <mat-icon color="accent" class="facilitiesItem__icon">smoke_free</mat-icon>
+                  <div class="">No Smoking</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div appScrollSpyContent id="Menu">
+          <div class="margin--top-l menuWrapper">
+
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Menu</div>
+            </div>
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Kids Menu">
+                <div class="tab-content-container">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="erg-menu__title">Breakfast</div>
+                    </div>
+                    <div class="erg-menu">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6"> <!--Dish-->
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">1 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich cdsssssssss
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">2 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">3 Nutella & Banana or Peanut Butter & Banana Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">4 Assorted Cereals of Your Choice, Banana & Honey*</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">5 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">6 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">7 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="erg-menu__title">Lunch</div>
+                    </div>
+                    <div class="erg-menu">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6"> <!--Dish-->
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">1 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich cdsssssssss
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">2 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">3 Nutella & Banana or Peanut Butter & Banana Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">4 Assorted Cereals of Your Choice, Banana & Honey*</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">5 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Al Carte Menu">
+                <div class="tab-content-container">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="erg-menu__title">Breakfast</div>
+                    </div>
+                    <div class="erg-menu">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6"> <!--Dish-->
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">1 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich cdsssssssss
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">2 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">3 Nutella & Banana or Peanut Butter & Banana Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">4 Assorted Cereals of Your Choice, Banana & Honey*</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">5 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Beverage Menu">
+                <div class="tab-content-container">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="erg-menu__title">Breakfast</div>
+                    </div>
+                    <div class="erg-menu">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6"> <!--Dish-->
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">1 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich cdsssssssss
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">2 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">3 Nutella & Banana or Peanut Butter & Banana Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="erg-menu__title">Lunch</div>
+                    </div>
+                    <div class="erg-menu">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6"> <!--Dish-->
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">1 Bacon & Egg Sandwich</div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich cdsssssssss
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR590.00</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                          <div class="erg-menu__menu-item">
+                            <div class="erg-menu__menu-item__title">
+                              <div class="heading">2 Soft Boiled Eggs, Toast Fingers
+                              </div>
+                              <div class="erg-menu__menu-item__title__text">Bacon & Egg SandwichBacon & Egg Sandwich Bacon
+                                & Egg Sandwich
+                              </div>
+                            </div>
+                            <div class="heading">
+                              <div class="heading">LKR400.00</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+            <div class="gradient-overlay"></div>
+            <div class="row menu-show-more">
+              <div class="col-12 col-sm-12 col-md-12 flex-container flex-container--center" menu-show-more>
+                <button class="menu-show-more" mat-stroked-button  (click)="openMenu()">Show More</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div appScrollSpyContent id="Map">
+          <div class="margin--top-l">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Map</div>
+            </div>
+            <div class="row item-row margin--top-l">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="map-container">
+                  <google-map height="400px"></google-map>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div appScrollSpyContent  id="Media">
+          <div class="margin--top-l">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">Media</div>
+              <button mat-button color="primary">See All</button>
+            </div>
+
+            <div class="row item-row margin--top-l">
+              <div class="col-12">
+                <ng-image-slider videoAutoPlay = true [animationSpeed]="0.3" [imageSize]="{space: 4}" slideImage="1" [infinite]="true" [autoSlide]="1" [images]="imageObject" [imagePopup]="true" #nav></ng-image-slider>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div appScrollSpyContent id="Reviews">
+          <div class="margin--top-l">
+            <div class="c-title c-title--border">
+              <div class="c-title--primary c-title--medium">What People say</div>
+              <button mat-button color="primary">See All</button>
+            </div>
+            <div class="reviews margin--top-l">
+              <app-user-comments></app-user-comments>
+              <app-user-comments></app-user-comments>
+              <app-user-comments></app-user-comments>
+              <app-user-comments></app-user-comments>
+              <app-user-comments></app-user-comments>
+            </div>
+            <div class="reviews-form margin--top-l">
+              <app-rating-stars class="erg-ratings--large"></app-rating-stars>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nick Name</mat-label>
+                    <input matInput placeholder="Ex. Micky Mouse" value="">
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Ex. user@domain.com" value="">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea [matAutosizeMinRows]="5"
+                              matInput
+                              matTextareaAutosize>
+              </textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 erg-btn--list">
+                  <button mat-flat-button color="primary">Submit</button>
+                  <button mat-stroked-button color="primary">Cancel</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </app-scroll-spy>
+
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+      <mat-card id="formFieldContainer" class="formFieldContainer search_widget webformFieldContainer">
+        <div class="search_widget_container">
+          <div class="c-title c-title--primary c-title--center" (click)="collapsed=false">Reserve your space</div>
+          <mat-card-content class="formContainer" id="formContainer" [@inOutAnimation] *ngIf="!collapsed">
+            <div class="c-label">Date & Time</div>
+            <div class="input-group search-widget-input mb-3">
+              <div class="input-group-prepend">
+                <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+              </div>
+              <input (click)="myDatepicker.open()" class="form-control" [matDatepicker]="myDatepicker" placeholder="Select date">
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </div>
+            <div class="row">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="c-label">Party Size</div>
+                <div class="input-group search-widget-input mb-3" [matMenuTriggerFor]="menu">
+                  <div class="input-group-prepend">
+                    <button mat-icon-button >
+                      <mat-icon>people</mat-icon>
+                    </button>
+                  </div>
+                  <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+                  <input type="text" class="form-control" placeholder="2 People" aria-label="destination"
+                         aria-describedby="basic-addon1">
+
+                </div>
+                <mat-menu #menu="matMenu" class="mat-menu-panel-custom">
+                  <app-input-spinner (click)="$event.stopPropagation()"></app-input-spinner>
+                </mat-menu>
+
+              </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="c-label">Party Size</div>
+                <div class="input-group search-widget-input mb-3" [matMenuTriggerFor]="menu2">
+                  <div class="input-group-prepend">
+                    <button mat-icon-button >
+                      <mat-icon>people</mat-icon>
+                    </button>
+                  </div>
+                  <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+                  <input type="text" class="form-control" placeholder="2 People" aria-label="destination"
+                         aria-describedby="basic-addon1">
+
+                </div>
+                <mat-menu #menu2="matMenu" class="mat-menu-panel-custom">
+                  <div class="filter-bar">
+                    <mat-chip-list class="filter-chip-list">
+                      <button class="filter-chip filter-chip--square" mat-button>Room</button>
+                      <button class="filter-chip filter-chip--square" mat-button>Booth</button>
+                      <button class="filter-chip filter-chip--square" mat-button>Hall</button>
+                    </mat-chip-list>
+                  </div>
+                </mat-menu>
+              </div>
+            </div>
+            <div class="c-label">Start From</div>
+            <div class="input-group search-widget-input mb-3 " [matMenuTriggerFor]="autoSugggest">
+              <div class="input-group-prepend">
+                <mat-icon>trip_origin</mat-icon>
+              </div>
+              <input  type="text" class="form-control" placeholder="What are you looking for ?" aria-label="destination" aria-describedby="basic-addon1">
+
+            </div>
+            <mat-menu #autoSugggest="matMenu" class="autoList customScroll">
+              <button mat-menu-item>Itemdvalvnal a ija ejeav anvanelakemf alenalkefmlkaemf alefnalemfl 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+            <div class="c-label">Start From</div>
+            <div class="timeSlots">
+              <mat-chip-list class="timeSlotsList">
+                <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+                <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+                <mat-chip class="timeSlotchip ">07.50 PM</mat-chip>
+                <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+                <mat-chip class="timeSlotchip timeSlotchip--default">07.50 PM</mat-chip>
+                <mat-chip class="timeSlotchip timeSlotchip--more"> More...</mat-chip>
+<!--                <button mat-button color="primary">More...</button>-->
+              </mat-chip-list>
+            </div>
+          </mat-card-content>
+          <button *ngIf="collapsed" class="erg-btn erg-btn--full-width" mat-flat-button color="warn" (click)="collapsed=false">Make A
+            Reservation
+          </button>
+          <button *ngIf="!collapsed" class="erg-btn erg-btn--full-width" mat-flat-button color="warn" (click)="reserve()">Make A
+            Reservation
+          </button>
+        </div>
+      </mat-card>
+      <div class="facilitiesListWrapper">
+        <div class="facilitiesItem">
+          <mat-icon color="accent" class="facilitiesItem__icon">food_bank</mat-icon>
+          <div class="facilitiesItem__titleWrapper">
+            <div class="facilitiesItem__title">Cuisines</div>
+            <div class="facilitiesItem__subTitle">International, Asian, Italian, Chinese</div>
+          </div>
+        </div>
+        <div class="facilitiesItem">
+          <mat-icon color="accent" class="facilitiesItem__icon">av_timer</mat-icon>
+          <div class="facilitiesItem__titleWrapper">
+            <div class="facilitiesItem__title">Hours of operation</div>
+            <div class="facilitiesItem__subTitle">Breakfast Buffet</div>
+            <div class="facilitiesItem__subTitle">Daily 6:00 am – 10:30 am</div>
+            <div class="facilitiesItem__subTitle">Lunch Buffet</div>
+            <div class="facilitiesItem__subTitle">Daily 12:00 pm – 2:30 pm</div>
+            <div class="facilitiesItem__subTitle">Endless High Tea</div>
+            <div class="facilitiesItem__subTitle">Daily 3:00 pm – 5:00 pm</div>
+            <div class="facilitiesItem__subTitle">Dinner Buffet</div>
+            <div class="facilitiesItem__subTitle">Daily 7:00 pm–10:30 pm</div>
+          </div>
+        </div>
+        <div class="facilitiesItem">
+          <mat-icon color="accent" class="facilitiesItem__icon">payments</mat-icon>
+          <div class="facilitiesItem__titleWrapper">
+            <div class="facilitiesItem__title">Payment options</div>
+            <div class="facilitiesItem__subTitle">MasterCard, AMEX, FriMi, Visa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fab-container reserve-fab">
+  <button mat-fab class="extended-fab" id="reserve-btn" color="warn" aria-label="Example icon button with a delete icon" (click)="openReserveSheet()">
+    <mat-icon>touch_app</mat-icon><span class="extended-fab__label">Reserve</span>
+  </button>
+</div>

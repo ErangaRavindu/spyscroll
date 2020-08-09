@@ -1,0 +1,38 @@
+<div class="mat-dialog-title">
+  <h2 >Please sign Up </h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field appearance="outline">
+
+    <input matInput placeholder="First Name">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Last Name">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input type="email" matInput placeholder="Email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input type="password" matInput placeholder="Password">
+  </mat-form-field>
+
+
+<!--<div mat-dialog-actions>-->
+<button class="erg-btn erg-btn--full-width erg-btn--large margin--top" mat-flat-button color="warn" (click)="onNoClick()">Sign Up</button>
+<!--</div>-->
+<hr>
+<div class="erg-btn--list erg-btn--list--center">
+  <button mat-button>
+    <mat-icon class="hg-icon">_google</mat-icon> Login With Google
+  </button>
+  <button mat-button>
+    <mat-icon class="hg-icon">_facebook</mat-icon> Login With Facebook
+  </button>
+</div>
+<div class="title--primary margin--top">Already Have an account? <a mat-button color="warn" href="https://www.google.com/" target="_blank">Sign In</a> </div>
+<!--<div class="text-left margin&#45;&#45;top">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</div>-->
+
+  </mat-dialog-content >

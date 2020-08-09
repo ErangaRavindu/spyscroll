@@ -1,0 +1,107 @@
+<div class="search_widget_container">
+<!--  <div class="row">-->
+<!--    <div class="col-12 col-sm-12 col-md-12">-->
+<!--      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>people</mat-icon>People<mat-icon>arrow_drop_down</mat-icon></button>-->
+<!--      <mat-menu #menu="matMenu" class="mat-menu-panel-custom" >-->
+<!--        <app-input-spinner (click) = "$event.stopPropagation()"></app-input-spinner>-->
+<!--      </mat-menu>-->
+<!--      <button mat-button [matMenuTriggerFor]="menuCategory">Category<mat-icon>arrow_drop_down</mat-icon></button>-->
+<!--      <mat-menu #menuCategory="matMenu">-->
+<!--        <button mat-menu-item>Item 1</button>-->
+<!--        <button mat-menu-item>Item 2</button>-->
+<!--      </mat-menu>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div id="mobile-search
+    " class="row mobile-search" [ngClass]=" openSearch ? 'mobile-search--display-none' : 'mobile-search--display'">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 c-search-form__content__item">
+      <div class="input-group search-widget-input mb-3 " (click)="openSearch = !openSearch">
+        <div class="input-group-prepend">
+          <mat-icon>search</mat-icon>
+        </div>
+        <input  type="text" class="form-control" placeholder="What are you looking for ?" aria-label="destination" aria-describedby="basic-addon1" (click)="openSearch = openSearch">
+
+      </div>
+    </div>
+  </div>
+  <div id="web-search" [ngClass]=" openSearch ? 'web-search--display' : 'web-search--display-none'" class="web-search ">
+    <div class="c-search-form__content">
+      <div class="c-search-form__content__item">
+        <div class="input-group  search-widget-input mb-3 " [matMenuTriggerFor]="autoSugggest">
+          <div class="input-group-prepend " style="width: 48px">
+            <mat-icon>trip_origin</mat-icon>
+          </div>
+          <input  type="text" class="form-control" placeholder="What are you looking for ?" aria-label="destination" aria-describedby="basic-addon1">
+
+        </div>
+        <mat-menu #autoSugggest="matMenu" class="autoList customScroll">
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+          <app-auto-suggest></app-auto-suggest>
+        </mat-menu>
+      </div>
+      <div class="c-search-form__content__item">
+        <div class="input-group search-widget-input mb-3">
+          <div class="input-group-prepend " style="width: 48px">
+            <mat-icon>place</mat-icon>
+          </div>
+          <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+          <input type="text" class="form-control" placeholder="Where ?" aria-label="destination" aria-describedby="basic-addon1">
+
+        </div>
+      </div>
+      <div class="c-search-form__content__item">
+        <div class="input-group search-widget-input mb-3">
+          <mat-datepicker-toggle class="input-group-prepend padding-override1"   [for]="picker2">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">event</mat-icon>
+          </mat-datepicker-toggle>
+            <input (click)="picker2.open()" [matDatepicker]="picker2" placeholder="Date" class="form-control">
+          <mat-datepicker #picker2 color="primary"></mat-datepicker>
+
+          <div class="input-group search-widget-input mb-3 border-radius--tl0 border-radius--tr0 ">
+<!--            <div class="input-group-prepend border-radius&#45;&#45;tl0 border-radius&#45;&#45;bl0 border&#45;&#45;l0">-->
+<!--              <mat-icon aria-hidden="false" aria-label="Example home icon">access_time</mat-icon>-->
+<!--            </div>-->
+            <input class="form-control time-picker border-radius--tl0 border-radius--bl0" value="11:30"  type="time" >
+<!--            <input class="form-control time-picker border-radius&#45;&#45;tl0 border-radius&#45;&#45;bl0" >-->
+          </div>
+          <mat-menu #timeSet="matMenu" class="erg-mat-menu">
+            <ngb-timepicker (click) = "$event.stopPropagation()" [(ngModel)]="time" [meridian]="meridian"></ngb-timepicker>
+          </mat-menu>
+          <!--        <mat-datepicker-toggle class="input-group-prepend padding-override1"   [owlDateTimeTrigger]="dt2">-->
+          <!--          <mat-icon aria-hidden="false" aria-label="Example home icon">event</mat-icon>-->
+          <!--        </mat-datepicker-toggle>-->
+          <!--        <input [owlDateTime]="dt2" placeholder="Date" class="form-control" [owlDateTimeTrigger]="dt2">-->
+          <!--&lt;!&ndash;        <mat-datepicker #picker2 color="primary"></mat-datepicker>&ndash;&gt;-->
+          <!--&lt;!&ndash;        <input [owlDateTime]="dt2" placeholder="Date Time">&ndash;&gt;-->
+          <!--&lt;!&ndash;        <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>&ndash;&gt;-->
+          <!--        <owl-date-time #dt2></owl-date-time>-->
+        </div>
+      </div>
+      <div class="c-search-form__content__item">
+        <div class="input-group search-widget-input mb-3" [matMenuTriggerFor]="People">
+          <div class="input-group-prepend padding-override1">
+            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+              <mat-icon>people</mat-icon>
+            </button>
+          </div>
+          <!--        <div class="half-circle half-circle&#45;&#45;left"></div>-->
+          <input type="text" class="form-control" placeholder="2 People" aria-label="destination" aria-describedby="basic-addon1">
+
+        </div>
+        <mat-menu #People="matMenu" class="mat-menu-panel-custom" >
+          <app-input-spinner (click) = "$event.stopPropagation()"></app-input-spinner>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="searchBtn-container">
+      <button routerLink="/search" mat-raised-button color="accent" (click)="openSearch = !openSearch"><mat-icon>search</mat-icon> Search</button>
+    </div>
+  </div>
+</div>
+
